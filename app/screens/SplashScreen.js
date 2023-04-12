@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import React from "react";
-import { Image } from "react-native-svg";
 
 // temp styles
 const styles = StyleSheet.create({
@@ -16,7 +15,6 @@ const SplashScreen = () => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Getting token...</Text>
-      <Image source={require("../../assets/splash.gif")} />
       <ActivityIndicator size="large" style={styles.indicator} />
     </View>
   );

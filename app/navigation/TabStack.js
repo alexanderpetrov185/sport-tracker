@@ -7,7 +7,7 @@ import WorkoutsScreen from "../screens/WorkoutsScreen";
 import StatisticScreen from "../screens/StatisticScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 
-export const TabStack = () => {
+const TabStack = () => {
   const Tab = createBottomTabNavigator();
 
   return (
@@ -62,3 +62,5 @@ export const TabStack = () => {
     </Tab.Navigator>
   );
 };
+
+export default TabStack;
