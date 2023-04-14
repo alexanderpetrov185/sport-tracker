@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
-import React from "react";
+import * as React from "react";
 
 // temp styles
 const styles = StyleSheet.create({
