@@ -5,7 +5,6 @@ export const Init = () => {
     let token = await AsyncStorage.getItem("token");
     // для сохранения авторизации текущего пользователя при закрытии приложения
     if (token !== null) {
-      console.log("token fetched");
       dispatch({
         type: "LOGIN",
         payload: token,
@@ -21,7 +20,6 @@ export const Login = (userName, password) => {
     if (userName === "currentUser" && password === "currentPassword") {
       token = userName + password; //dummyToken
       await AsyncStorage.setItem("token", token);
-      console.log("token stored");
     }
 
     dispatch({

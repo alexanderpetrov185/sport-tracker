@@ -3,9 +3,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import MyWorkoutScreen from "../screens/MyWorkoutScreen";
-import WorkoutsScreen from "../screens/WorkoutsScreen";
+import WorkoutsScreen from "../screens/Workouts/WorkoutsScreen";
 import StatisticScreen from "../screens/StatisticScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import WorkoutStack from "./WorkoutStack";
 
 const TabStack = () => {
   const Tab = createBottomTabNavigator();
@@ -29,8 +30,8 @@ const TabStack = () => {
         }}
       />
       <Tab.Screen
-        name="WorkoutsScreen"
-        component={WorkoutsScreen}
+        name="WorkoutStack"
+        component={WorkoutStack}
         options={{
           tabBarLabel: "Workouts",
           tabBarIcon: () => (

@@ -1,10 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
 import * as React from "react";
-import { AuthStack, Navigator } from "./app/navigation/Navigator";
+import { Navigator } from "./app/navigation/Navigator";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { Store } from "./app/store/Index";
 import { Init } from "./app/store/Actions";
 import SplashScreen from "./app/screens/SplashScreen";
+import { AuthStack } from "./app/navigation/AuthStack";
+import { StatusBar } from "react-native";
 
 const RootNavigation = () => {
   const token = useSelector((state) => state.authReducer.authToken);
@@ -35,6 +37,7 @@ const RootNavigation = () => {
 export default function App() {
   return (
     <Provider store={Store}>
+      <StatusBar theme="auto" />
       <RootNavigation />
     </Provider>
   );
