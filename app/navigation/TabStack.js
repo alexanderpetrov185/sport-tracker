@@ -3,10 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import MyWorkoutScreen from "../screens/MyWorkoutScreen";
-<<<<<<< HEAD
-=======
-import WorkoutsScreen from "../screens/Workouts/WorkoutsScreen";
->>>>>>> 1d849ae25b3688148835468490d47d83c2e229dd
 import StatisticScreen from "../screens/StatisticScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import WorkoutStack from "./WorkoutStack";
