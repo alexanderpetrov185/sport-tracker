@@ -1,11 +1,11 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import MyWorkoutScreen from "../screens/MyWorkoutScreen";
-import WorkoutsScreen from "../screens/WorkoutsScreen";
 import StatisticScreen from "../screens/StatisticScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import TabStack from "./TabStack";
 import LoginScreen from "../screens/LoginScreen";
+import WorkoutStack from "./WorkoutStack";
 
 const Stack = createStackNavigator();
 
@@ -28,7 +28,7 @@ export const Navigator = () => {
       <>
         <Stack.Screen name={"Tab"} component={TabStack} />
         <Stack.Screen name="MyWorkoutScreen" component={MyWorkoutScreen} />
-        <Stack.Screen name="WorkoutsScreen" component={WorkoutsScreen} />
+        <Stack.Screen name="WorkoutStack" component={WorkoutStack} />
         <Stack.Screen name="StatisticScreen" component={StatisticScreen} />
         <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       </>

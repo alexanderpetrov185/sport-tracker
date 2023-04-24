@@ -17,7 +17,6 @@ export const Init = () => {
 export const Login = (userName, password) => {
   return async (dispatch) => {
     let token = null;
-    // для сохранения авторизации текущего пользователя при закрытии приложения
     if (userName === "currentUser" && password === "currentPassword") {
       token = userName + password; //dummyToken
       await AsyncStorage.setItem("token", token);
