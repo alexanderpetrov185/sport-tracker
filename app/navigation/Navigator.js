@@ -1,9 +1,9 @@
 import * as React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
 import MyWorkoutScreen from "../screens/MyWorkoutScreen";
 import StatisticScreen from "../screens/StatisticScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import TabStack from "./TabStack";
+<<<<<<< HEAD
 import LoginScreen from "../screens/LoginScreen";
 import WorkoutStack from "./WorkoutStack";
 
@@ -16,9 +16,12 @@ export const AuthStack = () => {
     </Stack.Navigator>
   );
 };
+=======
+import Stack from "./Stack";
+import WorkoutStack from "./WorkoutStack";
+>>>>>>> 1d849ae25b3688148835468490d47d83c2e229dd
 
 export const Navigator = () => {
-  // Navigator
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}

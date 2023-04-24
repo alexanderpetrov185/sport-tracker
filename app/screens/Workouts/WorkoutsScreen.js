@@ -40,7 +40,11 @@ const WorkoutsScreen = ({ navigation }) => {
             style={styles.container}
             onPress={() =>
               navigation.navigate("ChoseWorkoutsScreen", {
+<<<<<<< HEAD
                 name: item.title,
+=======
+                name: item.text,
+>>>>>>> 1d849ae25b3688148835468490d47d83c2e229dd
               })
             }
           >
