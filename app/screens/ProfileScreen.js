@@ -2,12 +2,12 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import { Button } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { Logout } from "../store/Actions";
+import { logout } from "../src/actions/auth";
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
   const submit = () => {
-    dispatch(Logout());
+    dispatch(logout());
   };
 
   return (

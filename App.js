@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Store } from "./app/store/Index";
 import { StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import RootNavigation from "./app/navigation/RootNavigation";
+import store from "./app/src/reducers/authReducer";
 
 export default function App() {
   return (
-    <Provider store={Store}>
+    <Provider store={store}>
       <StatusBar theme="auto" />
       <RootNavigation />
     </Provider>

@@ -1,44 +1,17 @@
 import { View, StyleSheet, ImageBackground } from "react-native";
 import * as React from "react";
 import { Button, Text, TextInput } from "react-native-paper";
+import { login } from "../src/actions/auth";
 import { useDispatch } from "react-redux";
-import { Login } from "../store/Actions";
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  image: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  wrap: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 28,
-  },
-  box: {
-    borderRadius: 10,
-    elevation: 5,
-    padding: 20,
-    height: 250,
-  },
-  title: {
-    fontSize: 45,
-    color: "hotpink",
-    marginBottom: 5,
-    fontWeight: "bold",
-  },
-});
 
 const LoginScreen = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const dispatch = useDispatch();
+
   const submit = () => {
-    dispatch(Login(username, password));
+    dispatch(login(username, password));
   };
 
   return (
@@ -72,3 +45,31 @@ const LoginScreen = () => {
 };
 
 export default LoginScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  wrap: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 28,
+  },
+  box: {
+    borderRadius: 10,
+    elevation: 5,
+    padding: 20,
+    height: 250,
+  },
+  title: {
+    fontSize: 45,
+    color: "hotpink",
+    marginBottom: 5,
+    fontWeight: "bold",
+  },
+});

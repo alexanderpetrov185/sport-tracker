@@ -3,19 +3,10 @@ import MyWorkoutScreen from "../screens/MyWorkoutScreen";
 import StatisticScreen from "../screens/StatisticScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import TabStack from "./TabStack";
-import LoginScreen from "../screens/LoginScreen";
 import WorkoutStack from "./WorkoutStack";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
-
-export const AuthStack = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={"LoginScreen"} component={LoginScreen} />
-    </Stack.Navigator>
-  );
-};
 
 export const Navigator = () => {
   return (
