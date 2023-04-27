@@ -9,8 +9,6 @@ import { applyMiddleware, combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 
-// const token = AsyncStorage.getItem("token");
-
 const initialState = { isLoggedIn: false, token: null };
 //   ? { isLoggedIn: true, token: token }
 //   : { isLoggedIn: false, token: null };

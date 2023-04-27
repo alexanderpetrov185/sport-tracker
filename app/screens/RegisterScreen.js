@@ -2,7 +2,7 @@ import { View, StyleSheet, ImageBackground } from "react-native";
 import * as React from "react";
 import { Button, Text, TextInput } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { SignUp } from "../store/Actions";
+import { register } from "../src/actions/auth";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,13 +32,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const SignUpScreen = () => {
+const RegisterScreen = ({ navigation }) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const dispatch = useDispatch();
   const submit = () => {
-    dispatch(SignUp(username, password));
+    dispatch(register(username, password));
   };
 
   return (
@@ -49,7 +49,7 @@ const SignUpScreen = () => {
         style={styles.image}
       >
         <View style={styles.wrap}>
-          <Text style={styles.title}>Login</Text>
+          <Text style={styles.title}>Registration</Text>
           <TextInput
             placeholder="Username"
             mode="outlined"
@@ -63,7 +63,14 @@ const SignUpScreen = () => {
             onChangeText={(text) => setPassword(text)}
           />
           <Button mode="contained" style={{ marginTop: 20 }} onPress={submit}>
-            Login
+            Confirm
+          </Button>
+          <Button
+            mode="contained"
+            style={{ marginTop: 20 }}
+            onPress={() => navigation.navigate("LoginScreen")}
+          >
+            To Login
           </Button>
         </View>
       </ImageBackground>
@@ -71,4 +78,4 @@ const SignUpScreen = () => {
   );
 };
 
-export default SignUpScreen;
+export default RegisterScreen;

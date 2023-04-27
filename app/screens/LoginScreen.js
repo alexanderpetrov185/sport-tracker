@@ -4,7 +4,7 @@ import { Button, Text, TextInput } from "react-native-paper";
 import { login } from "../src/actions/auth";
 import { useDispatch } from "react-redux";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -37,6 +37,13 @@ const LoginScreen = () => {
           />
           <Button mode="contained" style={{ marginTop: 20 }} onPress={submit}>
             Login
+          </Button>
+          <Button
+            mode="contained"
+            style={{ marginTop: 20 }}
+            onPress={() => navigation.navigate("RegisterScreen")}
+          >
+            To Register
           </Button>
         </View>
       </ImageBackground>
