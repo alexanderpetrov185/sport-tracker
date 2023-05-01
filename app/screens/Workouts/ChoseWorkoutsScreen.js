@@ -13,13 +13,13 @@ const styles = StyleSheet.create({
 
 const ChoseWorkoutsScreen = ({ route, navigation }) => {
   const [listOfWorkouts, setListOfWorkouts] = React.useState();
-  // const id = route.params.id;
+  const id = route.params.id;
 
   React.useEffect(() => {
     $api
-      .get("/workouts")
+      .get(`/workoutPlans/${id}`)
       .then(({ data }) => {
-        setListOfWorkouts(data);
+        setListOfWorkouts(data.workouts);
       })
       .catch((error) => {
         console.log(error);

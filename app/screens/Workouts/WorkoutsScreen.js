@@ -19,6 +19,7 @@ const WorkoutsScreen = ({ navigation }) => {
     $api
       .get("/workoutPlans")
       .then(({ data }) => {
+        // console.log(data);
         setListOfWorkoutsPlan(data);
       })
       .catch((error) => {

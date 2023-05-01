@@ -11,14 +11,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const ExercisesScreen = () => {
+const ExercisesScreen = ({ route }) => {
   const [listOfExercises, setListOfExercises] = React.useState();
+  const id = route.params.id;
 
   React.useEffect(() => {
     $api
-      .get("/exercises")
+      .get(`/workouts/${id}`)
       .then(({ data }) => {
-        setListOfExercises(data);
+        setListOfExercises(data.complex);
+        console.log(data.complex);
       })
       .catch((error) => {
         console.log(error);
