@@ -7,10 +7,17 @@ const $api = axios.create({
   baseURL: API_URL,
 });
 
-// interceptor
-// $api.interceptors.request.use((config) => {
-//   config.headers.Authorization = `Bearer ${AsyncStorage.getItem("token")}`;
-//   return config;
-// });
+$api.interceptors.request.use(
+  async (config) => {
+    const token = await AsyncStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default $api;

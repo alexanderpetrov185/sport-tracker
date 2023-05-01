@@ -2,6 +2,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 import { FlatList } from "react-native-gesture-handler";
 import WorkoutsList from "../../components/WorkoutsList";
+import $api from "../../src/http";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,39 +13,35 @@ const styles = StyleSheet.create({
 });
 
 const WorkoutsScreen = ({ navigation }) => {
-  const [listOfWorkouts, setListOfWorkouts] = React.useState([
-    {
-      title: "Силовая и кроссфит",
-      index: 1,
-    },
-    {
-      title: "Базовый тренинг",
-      index: 2,
-    },
-    {
-      title: "Круговая тренировка",
-      index: 3,
-    },
-    {
-      title: "Объёмный тренинг",
-      index: 4,
-    },
-  ]);
+  const [listOfWorkoutsPlan, setListOfWorkoutsPlan] = React.useState();
+
+  React.useEffect(() => {
+    $api
+      .get("/workoutPlans")
+      .then(({ data }) => {
+        setListOfWorkoutsPlan(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+  }, []);
 
   return (
     <View>
       <FlatList
-        data={listOfWorkouts}
+        data={listOfWorkoutsPlan}
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.container}
             onPress={() =>
               navigation.navigate("ChoseWorkoutsScreen", {
-                name: item.title,
+                name: item.name,
+                id: item.id,
               })
             }
           >
-            <WorkoutsList el={item} />
+            <WorkoutsList el={item.name} />
           </TouchableOpacity>
         )}
       />

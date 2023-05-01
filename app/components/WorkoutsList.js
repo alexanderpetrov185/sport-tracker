@@ -2,7 +2,7 @@ import { Text, StyleSheet } from "react-native";
 import React from "react";
 
 const WorkoutsList = ({ el }) => {
-  return <Text style={styles.text}>{el.title}</Text>;
+  return <Text style={styles.text}>{el}</Text>;
 };
 
 const styles = StyleSheet.create({

@@ -11,15 +11,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const ChoseWorkoutsScreen = ({ route, navigation }) => {
-  const [listOfWorkouts, setListOfWorkouts] = React.useState();
-  // const id = route.params.id;
+const ExercisesScreen = () => {
+  const [listOfExercises, setListOfExercises] = React.useState();
 
   React.useEffect(() => {
     $api
-      .get("/workouts")
+      .get("/exercises")
       .then(({ data }) => {
-        setListOfWorkouts(data);
+        setListOfExercises(data);
       })
       .catch((error) => {
         console.log(error);
@@ -30,18 +29,10 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
   return (
     <View>
       <FlatList
-        data={listOfWorkouts}
+        data={listOfExercises}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.container}
-            onPress={() =>
-              navigation.navigate("ExercisesScreen", {
-                name: item.name,
-                id: item.id,
-              })
-            }
-          >
-            <WorkoutsList el={item.customName} />
+          <TouchableOpacity style={styles.container}>
+            <WorkoutsList el={item.name} />
           </TouchableOpacity>
         )}
       />
@@ -49,4 +40,4 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
   );
 };
 
-export default ChoseWorkoutsScreen;
+export default ExercisesScreen;
