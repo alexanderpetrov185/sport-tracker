@@ -1,8 +1,7 @@
 import { Text, StyleSheet } from "react-native";
 import React from "react";
 
-const WorkoutsList = ({ el }) => {
-  // console.log(el);
+const Exercise = ({ el, complex }) => {
   return <Text style={styles.text}>{el}</Text>;
 };
 
@@ -18,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WorkoutsList;
+export default Exercise;

@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import AuthService from "../../src/services/AuthService";
 import $api from "../http";
 import {
   REGISTER_SUCCESS,

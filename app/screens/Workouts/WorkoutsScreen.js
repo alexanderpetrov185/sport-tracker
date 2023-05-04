@@ -1,7 +1,7 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import * as React from "react";
 import { FlatList } from "react-native-gesture-handler";
-import WorkoutsList from "../../components/WorkoutsList";
+import WorkoutsList from "../../components/WorkoutsList/WorkoutsList";
 import $api from "../../src/http";
 
 const styles = StyleSheet.create({
@@ -19,7 +19,6 @@ const WorkoutsScreen = ({ navigation }) => {
     $api
       .get("/workoutPlans")
       .then(({ data }) => {
-        // console.log(data);
         setListOfWorkoutsPlan(data);
       })
       .catch((error) => {
@@ -42,7 +41,7 @@ const WorkoutsScreen = ({ navigation }) => {
               })
             }
           >
-            <WorkoutsList el={item.name} />
+            <WorkoutsList el={item.name} key={item.id} />
           </TouchableOpacity>
         )}
       />
