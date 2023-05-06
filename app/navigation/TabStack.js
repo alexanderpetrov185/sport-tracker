@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import MyWorkoutScreen from "../screens/MyWorkoutScreen";
 import StatisticScreen from "../screens/StatisticScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import WorkoutStack from "./WorkoutStack";
+import WorkoutStack from "./Workouts/WorkoutStack";
 
 const TabStack = () => {
   const Tab = createBottomTabNavigator();

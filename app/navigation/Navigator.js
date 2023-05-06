@@ -3,8 +3,8 @@ import MyWorkoutScreen from "../screens/MyWorkoutScreen";
 import StatisticScreen from "../screens/StatisticScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import TabStack from "./TabStack";
-import WorkoutStack from "./WorkoutStack";
 import { createStackNavigator } from "@react-navigation/stack";
+import WorkoutStack from "./Workouts/WorkoutStack";
 
 const Stack = createStackNavigator();
 

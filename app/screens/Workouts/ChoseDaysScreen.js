@@ -20,7 +20,7 @@ const Days = [
 
 const submitDays = () => {};
 
-const ChooseDaysScreen = () => {
+const ChoseDaysScreen = () => {
   return (
     <View>
       <Button mode="elevated" style={{ marginTop: 20 }} onPress={submitDays}>
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChooseDaysScreen;
+export default ChoseDaysScreen;

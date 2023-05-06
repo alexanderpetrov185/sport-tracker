@@ -35,7 +35,7 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
       <Button
         mode="elevated"
         style={{ marginTop: 20 }}
-        // onPress={navigation.navigate("ChooseDaysScreen")}
+        onPress={() => navigation.navigate("ChoseDaysScreen")}
       >
         Выбрать
       </Button>
