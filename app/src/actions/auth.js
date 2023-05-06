@@ -6,16 +6,15 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  INIT_SUCCESS,
 } from "./types";
 
 // Init (sessions)
 export const init = () => (dispatch) => {
   AsyncStorage.getItem("token").then((token) => {
-    console.log(token);
     if (token) {
       dispatch({
-        type: LOGIN_SUCCESS,
-        payload: token,
+        type: INIT_SUCCESS,
       });
     }
   });

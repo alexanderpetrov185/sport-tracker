@@ -1,4 +1,5 @@
 import {
+  INIT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_SUCCESS,
@@ -15,6 +16,11 @@ const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case INIT_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: true,
+      };
     case REGISTER_SUCCESS:
       return {
         ...state,
