@@ -1,7 +1,7 @@
 import { View, StyleSheet, ImageBackground } from "react-native";
 import * as React from "react";
 import { Button, Text, TextInput } from "react-native-paper";
-import { login } from "../src/actions/auth";
+import { init, login } from "../src/actions/auth";
 import { useDispatch } from "react-redux";
 
 const LoginScreen = ({ navigation }) => {
@@ -9,6 +9,8 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = React.useState("");
 
   const dispatch = useDispatch();
+
+  React.useEffect(() => dispatch(init()), []);
 
   const submit = () => {
     dispatch(login(username, password));

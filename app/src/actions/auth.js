@@ -8,6 +8,19 @@ import {
   LOGOUT,
 } from "./types";
 
+// Init (sessions)
+export const init = () => (dispatch) => {
+  AsyncStorage.getItem("token").then((token) => {
+    console.log(token);
+    if (token) {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: token,
+      });
+    }
+  });
+};
+
 //LOGIN
 export const login = (username, password) => (dispatch) => {
   $api
@@ -40,6 +53,8 @@ export const register = (username, password) => (dispatch) => {
   $api
     .post("/register", { username, password })
     .then((response) => {
+      // Авторизация сразу после регистрации
+
       // if (response.data.token) {
       //   dispatch({
       //     type: LOGIN_SUCCESS,

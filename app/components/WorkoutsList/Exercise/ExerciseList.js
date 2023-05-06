@@ -53,21 +53,3 @@ const styles = StyleSheet.create({
 });
 
 export default ExerciseList;
-
-{
-  /* <View style={styles.container}>
-<SectionList
-  sections={newListOfEx}
-  renderItem={({ item }) => (
-    <View style={styles.item}>
-      <Text style={styles.data}>{item}</Text>
-    </View>
-  )}
-  renderSectionHeader={({ section: { title } }) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  )}
-/>
-</View> */
-}

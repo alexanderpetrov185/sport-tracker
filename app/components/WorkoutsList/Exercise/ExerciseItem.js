@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "burlywood",
     borderWidth: 1,
-    marginTop: 20,
     width: "100%",
   },
 });

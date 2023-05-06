@@ -28,14 +28,14 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
       });
   }, []);
 
-  const submitWorkouts = () => {};
+  // const submitWorkouts = () => {};
 
   return (
     <View>
       <Button
         mode="elevated"
         style={{ marginTop: 20 }}
-        onPress={submitWorkouts}
+        // onPress={navigation.navigate("ChooseDaysScreen")}
       >
         Выбрать
       </Button>
