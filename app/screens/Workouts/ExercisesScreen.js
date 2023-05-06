@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
 import WorkoutsList from "../../components/WorkoutsList/WorkoutsList";
 import $api from "../../src/http";
+import ExerciseList from "../../components/WorkoutsList/ExerciseList";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,18 +28,7 @@ const ExercisesScreen = ({ route }) => {
       });
   }, []);
 
-  return (
-    <View>
-      <FlatList
-        data={listOfExercises}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.container}>
-            <WorkoutsList el={item.name} complex={item.complex} key={item.id} />
-          </TouchableOpacity>
-        )}
-      />
-    </View>
-  );
+  return <ExerciseList listOfExercises={listOfExercises} />;
 };
 
 export default ExercisesScreen;
