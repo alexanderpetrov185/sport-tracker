@@ -1,7 +1,6 @@
-import { Text, StyleSheet, View } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
-import { SectionList } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import ExerciseItem from "./ExerciseItem";
 
 const ExerciseList = ({ listOfExercises }) => {
   if (listOfExercises) {
@@ -10,12 +9,19 @@ const ExerciseList = ({ listOfExercises }) => {
     function gettingExercises() {
       return listOfExercises.map((item) => {
         const exercise = {
+          id: "",
           title: "",
           data: "",
         };
+        exercise.id = item.id;
         exercise.title = item.name;
         if (item.complex) {
-          exercise.data = item.complex.map((item) => item.name);
+          exercise.data = item.complex.map((item) => {
+            return {
+              title: item.name,
+              id: item.id,
+            };
+          });
         } else {
           exercise.data = "";
         }
@@ -25,17 +31,10 @@ const ExerciseList = ({ listOfExercises }) => {
 
     return (
       <View style={styles.container}>
-        <SectionList
-          sections={newListOfEx}
+        <FlatList
+          data={newListOfEx}
           renderItem={({ item }) => (
-            <View style={styles.item}>
-              <Text style={styles.data}>{item}</Text>
-            </View>
-          )}
-          renderSectionHeader={({ section: { title } }) => (
-            <View style={styles.item}>
-              <Text style={styles.title}>{title}</Text>
-            </View>
+            <ExerciseItem title={item.title} data={item.data} id={item.id} />
           )}
         />
       </View>
@@ -46,30 +45,29 @@ const ExerciseList = ({ listOfExercises }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 16,
-  },
-  item: {
-    padding: 20,
-    textAlign: "center",
-    borderRadius: 5,
-    backgroundColor: "burlywood",
-    borderWidth: 1,
-    marginTop: 20,
-    width: "80%",
-  },
-  data: {
-    padding: 20,
-    textAlign: "center",
-    borderRadius: 5,
-    backgroundColor: "burlywood",
-    borderWidth: 1,
-    marginTop: 20,
-    width: "100%",
-  },
-  title: {
-    fontSize: 24,
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+    padding: 5,
+    margin: 5,
   },
 });
 
 export default ExerciseList;
+
+{
+  /* <View style={styles.container}>
+<SectionList
+  sections={newListOfEx}
+  renderItem={({ item }) => (
+    <View style={styles.item}>
+      <Text style={styles.data}>{item}</Text>
+    </View>
+  )}
+  renderSectionHeader={({ section: { title } }) => (
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  )}
+/>
+</View> */
+}

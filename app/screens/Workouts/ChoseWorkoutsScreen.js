@@ -41,7 +41,7 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
               })
             }
           >
-            <WorkoutsList el={item.customName} key={item.id} />
+            <WorkoutsList el={item.customName} id={item.id} />
           </TouchableOpacity>
         )}
       />
