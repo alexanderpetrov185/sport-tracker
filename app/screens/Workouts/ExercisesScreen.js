@@ -1,8 +1,7 @@
 import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
-import WorkoutsList from "../../components/WorkoutsList/WorkoutsList";
 import $api from "../../src/http";
-import ExerciseList from "../../components/WorkoutsList/ExerciseList";
+import ExerciseList from "../../components/WorkoutsList/Exercise/ExerciseList";
 
 const styles = StyleSheet.create({
   container: {
