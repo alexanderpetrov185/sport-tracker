@@ -10,8 +10,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 
 const initialState = { isLoggedIn: false, token: null };
-//   ? { isLoggedIn: true, token: token }
-//   : { isLoggedIn: false, token: null };
 
 const authReducer = (state = initialState, action) => {
   const { type, payload } = action;

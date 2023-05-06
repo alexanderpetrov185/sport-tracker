@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
 import WorkoutsList from "../../components/WorkoutsList/WorkoutsList";
 import $api from "../../src/http";
+import { Button } from "react-native-paper";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,8 +28,17 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
       });
   }, []);
 
+  const submitWorkouts = () => {};
+
   return (
     <View>
+      <Button
+        mode="elevated"
+        style={{ marginTop: 20 }}
+        onPress={submitWorkouts}
+      >
+        Выбрать
+      </Button>
       <FlatList
         data={listOfWorkouts}
         renderItem={({ item }) => (

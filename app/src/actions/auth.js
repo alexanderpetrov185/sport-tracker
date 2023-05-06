@@ -6,40 +6,24 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  SET_MESSAGE,
 } from "./types";
 
 //LOGIN
 export const login = (username, password) => (dispatch) => {
-  $api.post("/auth", { username, password }).then((response) => {
-    if (response.data.token) {
-      AsyncStorage.setItem("token", response.data.token); //либо в username JSON.stringify(response.data)
-    }
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: response.data.token,
+  $api
+    .post("/auth", { username, password })
+    .then((response) => {
+      if (response.data.token) {
+        AsyncStorage.setItem("token", response.data.token);
+      }
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: response.data.token,
+      });
+    })
+    .catch((error) => {
+      alert(error);
     });
-    return Promise.resolve();
-  }),
-    (error) => {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      dispatch({
-        type: LOGIN_FAIL,
-      });
-
-      dispatch({
-        type: SET_MESSAGE,
-        payload: message,
-      });
-
-      return Promise.reject();
-    };
 };
 
 // LOGOUT
@@ -53,40 +37,20 @@ export const logout = () => (dispatch) => {
 
 //REGISTER
 export const register = (username, password) => (dispatch) => {
-  $api.post("/register", { username, password }).then(
-    (response) => {
-      if (response.data.token) {
-        AsyncStorage.setItem("token", response.data.token); //либо в username JSON.stringify(response.data)
-      }
+  $api
+    .post("/register", { username, password })
+    .then((response) => {
+      // if (response.data.token) {
+      //   dispatch({
+      //     type: LOGIN_SUCCESS,
+      //     payload: response.data.token,
+      //   });
+      // }
       dispatch({
         type: REGISTER_SUCCESS,
       });
-
-      dispatch({
-        type: SET_MESSAGE,
-        payload: response.data.message,
-      });
-
-      return Promise.resolve();
-    },
-    (error) => {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      dispatch({
-        type: REGISTER_FAIL,
-      });
-
-      dispatch({
-        type: SET_MESSAGE,
-        payload: message,
-      });
-
-      return Promise.reject();
-    }
-  );
+    })
+    .catch((error) => {
+      alert(error);
+    });
 };

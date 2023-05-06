@@ -5,8 +5,8 @@ import { login } from "../src/actions/auth";
 import { useDispatch } from "react-redux";
 
 const LoginScreen = ({ navigation }) => {
-  const [username, setUsername] = React.useState("blackiiifox");
-  const [password, setPassword] = React.useState("ters");
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const dispatch = useDispatch();
 
