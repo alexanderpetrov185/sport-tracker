@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-native-paper";
 
 const Days = [
@@ -20,38 +20,61 @@ const Days = [
 
 const submitDays = () => {};
 
+const Item = ({ item, onPress, backgroundColor, textColor }) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={[styles.text, { backgroundColor }]}
+  >
+    <Text style={[{ color: textColor }]}>{item.day}</Text>
+  </TouchableOpacity>
+);
+
 const ChoseDaysScreen = () => {
+  const [selectedId, setSelectedId] = useState();
+  const renderItem = ({ item }) => {
+    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+    const color = item.id === selectedId ? "white" : "black";
+
+    return (
+      <Item
+        item={item}
+        onPress={() => setSelectedId(item.id)}
+        backgroundColor={backgroundColor}
+        textColor={color}
+      />
+    );
+  };
+
   return (
-    <View>
+    <View style={styles.container}>
       <Button mode="elevated" style={{ marginTop: 20 }} onPress={submitDays}>
         Выбрать
       </Button>
       <FlatList
         data={Days}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.container}>
-            <Text style={styles.text}>{item.day}</Text>
-          </TouchableOpacity>
-        )}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        extraData={selectedId}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   text: {
     padding: 20,
     textAlign: "center",
     borderRadius: 5,
-    backgroundColor: "burlywood",
     borderWidth: 1,
     marginTop: 20,
-    width: "80%",
+    width: "100%",
+  },
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+    backgroundColor: "#fff",
+    padding: 5,
+    margin: 5,
   },
 });
 

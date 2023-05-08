@@ -1,15 +1,6 @@
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
 import $api from "../../src/http";
 import ExerciseList from "../../components/WorkoutsList/Exercise/ExerciseList";
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 const ExercisesScreen = ({ route }) => {
   const [listOfExercises, setListOfExercises] = React.useState();
