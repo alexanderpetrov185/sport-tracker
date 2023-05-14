@@ -4,7 +4,6 @@ import { View } from "react-native";
 
 const WorkoutsList = ({ el, id, wokoutNum }) => {
   if (el) {
-    console.log(el);
     return (
       <View style={styles.container}>
         <Text style={styles.text} key={id}>

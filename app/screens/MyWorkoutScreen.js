@@ -1,10 +1,14 @@
-import { View, Text } from "react-native";
 import * as React from "react";
+import CalendarComponent from "../components/Calendar/CalendarComponent";
+import { View } from "react-native";
+import $api from "../src/http";
 
 const MyWorkoutScreen = () => {
+  $api.get("/profile/workouts/calendar").then(({ data }) => console.log(data));
+
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>MyWorkoutScreen!</Text>
+    <View>
+      <CalendarComponent />
     </View>
   );
 };
