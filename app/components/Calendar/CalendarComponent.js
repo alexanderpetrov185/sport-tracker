@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 
-const CalendarComponent = () => {
-  const [selected, setSelected] = useState("");
+const CalendarComponent = ({ dateList }) => {
+  const [selected, setSelected] = useState();
+
+  console.log(dateList.upconmingDate);
 
   return (
     <Calendar
@@ -22,8 +24,12 @@ const CalendarComponent = () => {
         [selected]: {
           selected: true,
           disableTouchEvent: true,
-          selectedDotColor: "red",
         },
+        [dateList.currentDate]: {
+          selected: true,
+          selectedColor: "red",
+        },
+
         // "2023-05-11": { selected: true, marked: true, selectedColor: "blue" },
         // "2023-05-13": { marked: true },
         // "2023-05-14": { selected: true, marked: true, selectedColor: "blue" },

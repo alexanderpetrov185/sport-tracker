@@ -4,11 +4,23 @@ import { View } from "react-native";
 import $api from "../src/http";
 
 const MyWorkoutScreen = () => {
-  $api.get("/profile/workouts/calendar").then(({ data }) => console.log(data));
+  const [dateList, setDateList] = React.useState({
+    currentDate: "",
+    upcomingDate: "",
+  });
+
+  React.useEffect(() => {
+    $api.get("/profile/workouts/calendar").then(({ data }) => {
+      setDateList({
+        currentDate: data.current.scheduledDate.slice(0, 10),
+        upcomingDate: data.upcoming.map((el) => el.scheduledDate.slice(0, 10)),
+      });
+    });
+  }, []);
 
   return (
     <View>
-      <CalendarComponent />
+      <CalendarComponent dateList={dateList} />
     </View>
   );
 };
