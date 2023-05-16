@@ -1,7 +1,4 @@
 import * as React from "react";
-import MyWorkoutScreen from "../screens/MyWorkoutScreen";
-import StatisticScreen from "../screens/StatisticScreen";
-import ProfileScreen from "../screens/ProfileScreen";
 import TabStack from "./TabStack";
 import { createStackNavigator } from "@react-navigation/stack";
 import WorkoutStack from "./Workouts/WorkoutStack";
@@ -17,10 +14,7 @@ export const Navigator = () => {
     >
       <>
         <Stack.Screen name={"Tab"} component={TabStack} />
-        <Stack.Screen name="MyWorkoutScreen" component={MyWorkoutScreen} />
-        <Stack.Screen name="WorkoutStack" component={WorkoutStack} />
-        <Stack.Screen name="StatisticScreen" component={StatisticScreen} />
-        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen name={"WorkoutStack"} component={WorkoutStack} />
       </>
     </Stack.Navigator>
   );

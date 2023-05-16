@@ -4,8 +4,6 @@ import { Calendar, LocaleConfig } from "react-native-calendars";
 const CalendarComponent = ({ dateList }) => {
   const [selected, setSelected] = useState();
 
-  console.log(dateList.upconmingDate);
-
   return (
     <Calendar
       // Customize the appearance of the calendar

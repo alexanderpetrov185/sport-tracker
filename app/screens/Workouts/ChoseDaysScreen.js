@@ -15,7 +15,7 @@ const Days = [
   { day: "Wednesday", selected: null, id: 3 },
   { day: "Thursday", selected: null, id: 4 },
   { day: "Friday", selected: null, id: 5 },
-  { day: "saturday", selected: null, id: 6 },
+  { day: "Saturday", selected: null, id: 6 },
   { day: "Sunday", selected: null, id: 7 },
 ];
 
@@ -54,11 +54,18 @@ const ChoseDaysScreen = ({ route, navigation }) => {
       }
     }).map((el) => el.day);
 
-    $api.post("/profile/workouts", { workoutPlan, schedule }).catch((error) => {
-      alert(error);
-    });
+    console.log("schedule", schedule);
 
-    navigation.navigate("MyWorkoutScreen");
+    $api
+      .post("/profile/workouts", { workoutPlan, schedule })
+      .then((response) => {
+        if (response) navigation.navigate("MyWorkoutScreen");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+
+    // navigation.navigate("MyWorkoutScreen");
   };
 
   return (
