@@ -2,7 +2,9 @@ import { View, Text, FlatList } from "react-native";
 import React from "react";
 
 const ComplexItem = ({ item }) => {
-  return item.complexName.map((el) => <Text>{"-" + el}</Text>);
+  return item.complex.map((el) => (
+    <Text key={el.idComplex}>{"-" + el.nameComplex}</Text>
+  ));
 };
 
 const CurrentWorkoutList = ({ workouts }) => {
@@ -12,12 +14,12 @@ const CurrentWorkoutList = ({ workouts }) => {
       <FlatList
         data={workouts}
         renderItem={({ item }) => {
-          if (!item.complexName) {
-            return <Text>{item.name}</Text>;
+          if (!item.complex) {
+            return <Text key={item.id}>{item.name}</Text>;
           } else {
             return (
               <View>
-                <Text>{item.name + ":"}</Text>
+                <Text key={item.id}>{item.name + ":"}</Text>
                 <ComplexItem item={item} />
               </View>
             );

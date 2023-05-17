@@ -40,9 +40,14 @@ const MyWorkoutScreen = ({ navigation }) => {
         setCurrentWorkout((prevState) => ({
           ...prevState,
           workout: data.current.workout.complex.map((el) => {
-            let workout = { name: el.name };
+            let workout = { name: el.name, id: el.id };
             if (el.complex) {
-              workout.complexName = el.complex.map((el) => el.name);
+              workout.complex = el.complex.map((el) => {
+                return {
+                  nameComplex: el.name,
+                  idComplex: el.id,
+                };
+              });
             }
             return workout;
           }),
