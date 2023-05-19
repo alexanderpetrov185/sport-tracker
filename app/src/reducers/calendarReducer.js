@@ -3,7 +3,7 @@ import { INIT_CALENDAR, CHANGE_CALENDAR } from "../actions/types";
 const initialState = {
   history: "",
   currentDate: "",
-  upcomingDate: "",
+  upcomingDates: "",
   workout: "",
 };
 
@@ -16,7 +16,7 @@ const calendarReducer = (state = initialState, action) => {
         ...state,
         history: payload.history,
         currentDate: payload.currentDate,
-        upcomingDate: payload.upcomingDate,
+        upcomingDates: payload.upcomingDates,
         workout: payload.workout,
       };
     case CHANGE_CALENDAR:

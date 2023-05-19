@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useSelector } from "react-redux";
+import { changeCalendar } from "../../src/actions/calendar";
 
 const CalendarComponent = ({ dateList }) => {
-  // const selectedDate = useSelector((state) => {
-  //   return state.calendarReducer.upcomingDate;
-  // });
-  console.log(dateList);
+  const upcomingDates = useSelector(
+    (state) => state.calendarReducer.upcomingDates
+  );
+  console.log(upcomingDates);
 
   const [selected, setSelected] = useState();
 
@@ -17,8 +18,8 @@ const CalendarComponent = ({ dateList }) => {
     },
   };
   if (dateList.history) {
-    dateList.history.map((date) => {
-      markedDay[date] = {
+    dateList.history.map((el) => {
+      markedDay[el.date] = {
         selected: true,
         selectedColor: "red",
       };
@@ -33,9 +34,9 @@ const CalendarComponent = ({ dateList }) => {
     };
   }
 
-  if (dateList.upcomingDate) {
-    dateList.upcomingDate.map((date) => {
-      markedDay[date] = {
+  if (dateList.upcomingDates) {
+    dateList.upcomingDates.map((el) => {
+      markedDay[el.date] = {
         selected: true,
         selectedColor: "grey",
       };
@@ -52,8 +53,9 @@ const CalendarComponent = ({ dateList }) => {
       }}
       // Callback that gets called when the user selects a day
       onDayPress={(day) => {
-        console.log(day);
+        // console.log(day);
         setSelected(day.dateString);
+        changeCalendar();
       }}
       // Mark specific dates as marked
       markedDates={markedDay}

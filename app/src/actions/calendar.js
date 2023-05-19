@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import $api from "../http";
 import { INIT_CALENDAR } from "./types";
 
@@ -7,18 +8,22 @@ export const initCalendar = () => (dispatch) => {
     dispatch({
       type: INIT_CALENDAR,
       payload: {
-        history: {
-          id: data.history.id,
-          date: data.history.map((el) => el.scheduledDate.slice(0, 10)),
-        },
+        history: data.history.map((el) => {
+          return {
+            id: el.id,
+            date: el.scheduledDate.slice(0, 10),
+          };
+        }),
         currentDate: {
           id: data.current.id,
           date: data.current.scheduledDate.slice(0, 10),
         },
-        upcomingDate: {
-          id: data.upcoming.id,
-          date: data.upcoming.map((el) => el.scheduledDate.slice(0, 10)),
-        },
+        upcomingDates: data.upcoming.map((el) => {
+          return {
+            id: el.id,
+            date: el.scheduledDate.slice(0, 10),
+          };
+        }),
         workout: data.current.workout,
       },
     });

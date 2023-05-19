@@ -19,9 +19,9 @@ const MyWorkoutScreen = ({ navigation }) => {
   const dateList = useSelector((state) => {
     return {
       dates: {
-        history: state.calendarReducer.history.date,
+        history: state.calendarReducer.history,
         currentDate: state.calendarReducer.currentDate.date,
-        upcomingDate: state.calendarReducer.upcomingDate.date,
+        upcomingDates: state.calendarReducer.upcomingDates,
       },
       workout: state.calendarReducer.workout,
     };
