@@ -7,12 +7,13 @@ const CalendarComponent = ({ dateList }) => {
   const dispatch = useDispatch();
   const [selected, setSelected] = useState();
 
-  const upcomingDates = useSelector(
-    (state) => state.calendarReducer.upcomingDates
-  );
-  const currentDate = useSelector((state) => state.calendarReducer.currentDate);
-  const history = useSelector((state) => state.calendarReducer.history);
-  const allMarkedDates = [...upcomingDates, currentDate, ...history];
+  const allMarkedDates = useSelector((state) => {
+    return [
+      ...state.calendarReducer.upcomingDates,
+      state.calendarReducer.currentDate,
+      ...state.calendarReducer.history,
+    ];
+  });
 
   function findAndSendId(selectedDay) {
     const dayId = allMarkedDates.find(({ date }) => date === selectedDay).id;
@@ -24,7 +25,7 @@ const CalendarComponent = ({ dateList }) => {
   let markedDay = {
     [selected]: {
       selected: true,
-      selectedColor: "green",
+      selectedColor: "blue",
     },
   };
 

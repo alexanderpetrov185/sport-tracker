@@ -1,6 +1,6 @@
 import * as React from "react";
 import CalendarComponent from "../components/Calendar/CalendarComponent";
-import { View } from "react-native";
+import { Modal, TextInput, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import CurrentWorkout from "../components/currentWorkout/currentWorkout";
 import { Button } from "react-native-paper";
@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { initCalendar } from "../src/actions/calendar";
 
 const MyWorkoutScreen = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [comment, onChangeText] = React.useState("Some comment here");
+
   // change calendar state
   const dispatch = useDispatch();
   useFocusEffect(
@@ -27,12 +30,43 @@ const MyWorkoutScreen = ({ navigation }) => {
     };
   });
 
+  function submitWorkout() {
+    setModalVisible(!modalVisible);
+    // $api.post("/profile/workouts/calendar/", { comment, workoutDate });
+  }
+
   return (
     <View>
       <CalendarComponent dateList={dateList.dates} />
-      <Button mode="elevated" style={{ margin: 10 }}>
+      <Button
+        mode="elevated"
+        style={{ margin: 10 }}
+        onPress={() => setModalVisible(true)}
+      >
         Подтвердить тренировку
       </Button>
+      <View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={{ backgroundColor: "rgba(168, 157, 157, 1);" }}>
+            <TextInput onChangeText={onChangeText} value={comment} />
+            <Button
+              mode="elevated"
+              style={{ margin: 10 }}
+              onPress={() => submitWorkout()}
+            >
+              Отправить
+            </Button>
+          </View>
+        </Modal>
+      </View>
       <CurrentWorkout currentWorkout={dateList.workout} />
     </View>
   );
