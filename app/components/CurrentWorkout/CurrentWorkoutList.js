@@ -1,16 +1,13 @@
 import { View, Text, FlatList } from "react-native";
 import React from "react";
 
-const ComplexItem = ({ item }) => {
-  return item.complex.map((el) => (
-    <Text key={el.idComplex}>{"-" + el.nameComplex}</Text>
-  ));
+const ComplexItem = ({ itemComplex }) => {
+  return itemComplex.map((el) => <Text key={el.id}>{"-" + el.name}</Text>);
 };
 
 const CurrentWorkoutList = ({ workouts }) => {
   return (
     <View>
-      <Text>{workouts.customName}</Text>
       <FlatList
         data={workouts}
         renderItem={({ item }) => {
@@ -20,7 +17,7 @@ const CurrentWorkoutList = ({ workouts }) => {
             return (
               <View>
                 <Text key={item.id}>{item.name + ":"}</Text>
-                <ComplexItem item={item} />
+                <ComplexItem itemComplex={item.complex} />
               </View>
             );
           }

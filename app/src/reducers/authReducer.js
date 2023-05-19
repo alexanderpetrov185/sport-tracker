@@ -6,9 +6,6 @@ import {
   LOGIN_FAIL,
   LOGOUT,
 } from "../actions/types";
-import { applyMiddleware, combineReducers } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
-import thunk from "redux-thunk";
 
 const initialState = { isLoggedIn: false, token: null };
 
@@ -54,15 +51,4 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-const rootReducer = combineReducers({
-  authReducer,
-});
-
-const middleware = [thunk];
-
-const store = configureStore(
-  { reducer: rootReducer },
-  applyMiddleware(...middleware)
-);
-
-export default store;
+export default authReducer;
