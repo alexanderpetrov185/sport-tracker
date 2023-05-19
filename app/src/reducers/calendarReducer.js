@@ -22,7 +22,7 @@ const calendarReducer = (state = initialState, action) => {
     case CHANGE_CALENDAR:
       return {
         ...state,
-        workout: payload,
+        workout: payload.workout,
       };
     default:
       return state;

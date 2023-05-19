@@ -7,9 +7,18 @@ export const initCalendar = () => (dispatch) => {
     dispatch({
       type: INIT_CALENDAR,
       payload: {
-        history: data.history.map((el) => el.scheduledDate.slice(0, 10)),
-        currentDate: data.current.scheduledDate.slice(0, 10),
-        upcomingDate: data.upcoming.map((el) => el.scheduledDate.slice(0, 10)),
+        history: {
+          id: data.history.id,
+          date: data.history.map((el) => el.scheduledDate.slice(0, 10)),
+        },
+        currentDate: {
+          id: data.current.id,
+          date: data.current.scheduledDate.slice(0, 10),
+        },
+        upcomingDate: {
+          id: data.upcoming.id,
+          date: data.upcoming.map((el) => el.scheduledDate.slice(0, 10)),
+        },
         workout: data.current.workout,
       },
     });
