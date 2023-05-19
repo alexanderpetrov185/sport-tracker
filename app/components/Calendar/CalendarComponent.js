@@ -1,22 +1,33 @@
 import React, { useState } from "react";
-import { Calendar, LocaleConfig } from "react-native-calendars";
-import { useSelector } from "react-redux";
-import { changeCalendar } from "../../src/actions/calendar";
+import { Calendar } from "react-native-calendars";
+import { useDispatch, useSelector } from "react-redux";
+import { changeCurrentWorkout } from "../../src/actions/calendar";
 
 const CalendarComponent = ({ dateList }) => {
+  const dispatch = useDispatch();
+  const [selected, setSelected] = useState();
+
   const upcomingDates = useSelector(
     (state) => state.calendarReducer.upcomingDates
   );
-  console.log(upcomingDates);
+  const currentDate = useSelector((state) => state.calendarReducer.currentDate);
+  const history = useSelector((state) => state.calendarReducer.history);
+  const allMarkedDates = [...upcomingDates, currentDate, ...history];
 
-  const [selected, setSelected] = useState();
+  function findAndSendId(selectedDay) {
+    const dayId = allMarkedDates.find(({ date }) => date === selectedDay).id;
+    if (dayId) {
+      dispatch(changeCurrentWorkout(dayId));
+    }
+  }
 
   let markedDay = {
     [selected]: {
       selected: true,
-      disableTouchEvent: true,
+      selectedColor: "green",
     },
   };
+
   if (dateList.history) {
     dateList.history.map((el) => {
       markedDay[el.date] = {
@@ -53,9 +64,8 @@ const CalendarComponent = ({ dateList }) => {
       }}
       // Callback that gets called when the user selects a day
       onDayPress={(day) => {
-        // console.log(day);
         setSelected(day.dateString);
-        changeCalendar();
+        findAndSendId(day.dateString);
       }}
       // Mark specific dates as marked
       markedDates={markedDay}

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import $api from "../http";
-import { INIT_CALENDAR } from "./types";
+import { CHANGE_CALENDAR, INIT_CALENDAR } from "./types";
 
 // Init
 export const initCalendar = () => (dispatch) => {
@@ -30,7 +30,16 @@ export const initCalendar = () => (dispatch) => {
   });
 };
 
-export const changeCalendar = () => (dispatch) => {};
+export const changeCurrentWorkout = (id) => (dispatch) => {
+  $api.get(`/profile/workouts/calendar/${id}`).then(({ data }) => {
+    dispatch({
+      type: CHANGE_CALENDAR,
+      payload: {
+        workout: data.workout,
+      },
+    });
+  });
+};
 
 // //transform data for current workout
 // if (data.current.workout.customName) {
