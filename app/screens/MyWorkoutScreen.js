@@ -4,6 +4,7 @@ import { View } from "react-native";
 import $api from "../src/http";
 import { useFocusEffect } from "@react-navigation/native";
 import CurrentWorkout from "../components/currentWorkout/currentWorkout";
+import { Button } from "react-native-paper";
 
 const MyWorkoutScreen = ({ navigation }) => {
   const [dateList, setDateList] = React.useState({
@@ -59,6 +60,9 @@ const MyWorkoutScreen = ({ navigation }) => {
   return (
     <View>
       <CalendarComponent dateList={dateList} />
+      <Button mode="elevated" style={{ margin: 10 }}>
+        Подтвердить тренировку
+      </Button>
       <CurrentWorkout currentWorkout={currentWorkout} />
     </View>
   );

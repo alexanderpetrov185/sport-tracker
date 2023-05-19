@@ -14,7 +14,7 @@ const CalendarComponent = ({ dateList }) => {
     dateList.history.map((date) => {
       markedDay[date] = {
         selected: true,
-        selectedColor: "grey",
+        selectedColor: "red",
       };
     });
   }
@@ -31,7 +31,7 @@ const CalendarComponent = ({ dateList }) => {
     dateList.upcomingDate.map((date) => {
       markedDay[date] = {
         selected: true,
-        selectedColor: "red",
+        selectedColor: "grey",
       };
     });
   }
@@ -56,8 +56,3 @@ const CalendarComponent = ({ dateList }) => {
 };
 
 export default CalendarComponent;
-
-//   // "2023-05-11": { selected: true, marked: true, selectedColor: "blue" },
-//   // "2023-05-13": { marked: true },
-//   // "2023-05-14": { selected: true, marked: true, selectedColor: "blue" },
-// }
