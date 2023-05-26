@@ -7,10 +7,16 @@ const CurrentWorkout = ({ currentWorkout }) => {
     ? "Тренировка: "
     : currentWorkout.customName;
 
+  console.log(currentWorkout.complex);
+
   return (
     <View style={styles.container}>
       <Text>{customName}</Text>
-      <CurrentWorkoutList workouts={currentWorkout.complex} />
+      {currentWorkout.complex ? (
+        <CurrentWorkoutList workouts={currentWorkout.complex} />
+      ) : (
+        <Text>{"В этот день тренировок нет"}</Text>
+      )}
     </View>
   );
 };

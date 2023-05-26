@@ -1,10 +1,15 @@
-import { INIT_CALENDAR, CHANGE_CALENDAR } from "../actions/types";
+import {
+  INIT_CALENDAR,
+  CHANGE_CALENDAR,
+  EMPTYDAY_CALENDAR,
+} from "../actions/types";
 
 const initialState = {
-  history: "",
-  currentDate: "",
-  upcomingDates: "",
+  history: [],
+  currentDate: [],
+  upcomingDates: [],
   workout: "",
+  loading: true,
 };
 
 const calendarReducer = (state = initialState, action) => {
@@ -18,11 +23,17 @@ const calendarReducer = (state = initialState, action) => {
         currentDate: payload.currentDate,
         upcomingDates: payload.upcomingDates,
         workout: payload.workout,
+        loading: false,
       };
     case CHANGE_CALENDAR:
       return {
         ...state,
         workout: payload.workout,
+      };
+    case EMPTYDAY_CALENDAR:
+      return {
+        ...state,
+        workout: "",
       };
     default:
       return state;

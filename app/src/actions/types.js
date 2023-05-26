@@ -9,3 +9,4 @@ export const INIT_SUCCESS = "INIT_SUCCESS";
 // calendar
 export const INIT_CALENDAR = "INIT_CALENDAR";
 export const CHANGE_CALENDAR = "CHANGE_CALENDAR";
+export const EMPTYDAY_CALENDAR = "EMPTYDAY_CALENDAR";

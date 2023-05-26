@@ -54,8 +54,6 @@ const ChoseDaysScreen = ({ route, navigation }) => {
       }
     }).map((el) => el.day);
 
-    console.log("schedule", schedule);
-
     $api
       .post("/profile/workouts", { workoutPlan, schedule })
       .then((response) => {
@@ -64,8 +62,6 @@ const ChoseDaysScreen = ({ route, navigation }) => {
       .catch((error) => {
         alert(error);
       });
-
-    // navigation.navigate("MyWorkoutScreen");
   };
 
   return (

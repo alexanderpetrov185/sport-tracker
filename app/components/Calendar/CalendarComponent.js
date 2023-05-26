@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import { Calendar } from "react-native-calendars";
-import { useDispatch, useSelector } from "react-redux";
-import { changeCurrentWorkout } from "../../src/actions/calendar";
+import { useDispatch } from "react-redux";
+import { changeCurrentWorkout, emptyDay } from "../../src/actions/calendar";
 
 const CalendarComponent = ({ dateList }) => {
   const dispatch = useDispatch();
   const [selected, setSelected] = useState();
 
-  const allMarkedDates = useSelector((state) => {
-    return [
-      ...state.calendarReducer.upcomingDates,
-      state.calendarReducer.currentDate,
-      ...state.calendarReducer.history,
-    ];
-  });
+  const allMarkedDates = [
+    ...dateList.history,
+    dateList.currentDate,
+    ...dateList.upcomingDates,
+  ];
 
   function findAndSendId(selectedDay) {
-    const dayId = allMarkedDates.find(({ date }) => date === selectedDay).id;
+    const dayId = allMarkedDates.find(
+      ({ date }) => date.slice(0, 10) === selectedDay
+    );
     if (dayId) {
-      dispatch(changeCurrentWorkout(dayId));
+      dispatch(changeCurrentWorkout(dayId.id));
+    } else {
+      dispatch(emptyDay());
     }
   }
 
@@ -29,31 +31,28 @@ const CalendarComponent = ({ dateList }) => {
     },
   };
 
-  if (dateList.history) {
-    dateList.history.map((el) => {
-      markedDay[el.date] = {
-        selected: true,
-        selectedColor: "red",
-      };
-    });
-  }
-
-  if (dateList.currentDate) {
-    markedDay[dateList.currentDate] = {
+  // нет проверки на undefined входящего массива для методов map, slice
+  dateList.history.map((el) => {
+    markedDay[el.date.slice(0, 10)] = {
       selected: true,
-      marked: true,
-      selectedColor: "purple",
+      selectedColor: "red",
     };
-  }
+  });
 
-  if (dateList.upcomingDates) {
-    dateList.upcomingDates.map((el) => {
-      markedDay[el.date] = {
-        selected: true,
-        selectedColor: "grey",
-      };
-    });
-  }
+  markedDay[dateList.currentDate.date.slice(0, 10)] = {
+    selected: true,
+    marked: true,
+    selectedColor: "purple",
+  };
+
+  dateList.upcomingDates.map((el) => {
+    markedDay[el.date.slice(0, 10)] = {
+      selected: true,
+      selectedColor: "grey",
+    };
+  });
+
+  // console.log(markedDay);
 
   return (
     <Calendar

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import $api from "../http";
-import { CHANGE_CALENDAR, INIT_CALENDAR } from "./types";
+import { CHANGE_CALENDAR, INIT_CALENDAR, EMPTYDAY_CALENDAR } from "./types";
 
 // Init
 export const initCalendar = () => (dispatch) => {
@@ -11,17 +11,17 @@ export const initCalendar = () => (dispatch) => {
         history: data.history.map((el) => {
           return {
             id: el.id,
-            date: el.scheduledDate.slice(0, 10),
+            date: el.scheduledDate,
           };
         }),
         currentDate: {
           id: data.current.id,
-          date: data.current.scheduledDate.slice(0, 10),
+          date: data.current.scheduledDate,
         },
         upcomingDates: data.upcoming.map((el) => {
           return {
             id: el.id,
-            date: el.scheduledDate.slice(0, 10),
+            date: el.scheduledDate,
           };
         }),
         workout: data.current.workout,
@@ -41,26 +41,8 @@ export const changeCurrentWorkout = (id) => (dispatch) => {
   });
 };
 
-// //transform data for current workout
-// if (data.current.workout.customName) {
-//   setCurrentWorkout((prevState) => ({
-//     ...prevState,
-//     customName: data.current.workout.customName,
-//   }));
-// }
-// //transform data for current workout
-// setCurrentWorkout((prevState) => ({
-//   ...prevState,
-//   workout: data.current.workout.complex.map((el) => {
-//     let workout = { name: el.name, id: el.id };
-//     if (el.complex) {
-//       workout.complex = el.complex.map((el) => {
-//         return {
-//           nameComplex: el.name,
-//           idComplex: el.id,
-//         };
-//       });
-//     }
-//     return workout;
-//   }),
-// }));
+export const emptyDay = () => (dispatch) => {
+  dispatch({
+    type: EMPTYDAY_CALENDAR,
+  });
+};
