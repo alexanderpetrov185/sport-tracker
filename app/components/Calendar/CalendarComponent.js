@@ -5,7 +5,6 @@ import { changeCurrentWorkout, emptyDay } from "../../src/actions/calendar";
 
 const CalendarComponent = ({ dateList }) => {
   const dispatch = useDispatch();
-  const [selected, setSelected] = useState();
 
   const allMarkedDates = [
     ...dateList.history,
@@ -24,15 +23,11 @@ const CalendarComponent = ({ dateList }) => {
     }
   }
 
-  let markedDay = {
-    [selected]: {
-      selected: true,
-      selectedColor: "blue",
-    },
-  };
+  const [selected, setSelected] = useState();
+  const markedDay = {};
 
-  // нет проверки на undefined входящего массива для методов map, slice
-  dateList.history.map((el) => {
+  // нет проверки на undefined входящего массива для методов forEach, slice
+  dateList.history.forEach((el) => {
     markedDay[el.date.slice(0, 10)] = {
       selected: true,
       selectedColor: "red",
@@ -45,14 +40,17 @@ const CalendarComponent = ({ dateList }) => {
     selectedColor: "purple",
   };
 
-  dateList.upcomingDates.map((el) => {
+  dateList.upcomingDates.forEach((el) => {
     markedDay[el.date.slice(0, 10)] = {
       selected: true,
       selectedColor: "grey",
     };
   });
 
-  // console.log(markedDay);
+  markedDay[selected] = {
+    selected: true,
+    selectedColor: "blue",
+  };
 
   return (
     <Calendar

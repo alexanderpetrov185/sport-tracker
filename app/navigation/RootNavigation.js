@@ -6,9 +6,6 @@ import { AuthStack } from "./AuthStack";
 
 const RootNavigation = () => {
   const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
-  // if (loading) {
-  //   return <SplashScreen />;
-  // }
 
   return (
     <NavigationContainer>
