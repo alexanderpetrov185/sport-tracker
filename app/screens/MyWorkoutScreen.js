@@ -2,11 +2,12 @@ import * as React from "react";
 import CalendarComponent from "../components/Calendar/CalendarComponent";
 import { Modal, TextInput, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import CurrentWorkout from "../components/currentWorkout/currentWorkout";
+import CurrentWorkout from "../components/CurrentWorkout/CurrentWorkout";
 import { Button } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { initCalendar } from "../src/actions/calendar";
 import SplashScreen from "./SplashScreen";
+import $api from "../src/http";
 
 const MyWorkoutScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -37,7 +38,9 @@ const MyWorkoutScreen = ({ navigation }) => {
 
   function submitWorkout() {
     setModalVisible(!modalVisible);
-    // $api.post("/profile/workouts/calendar/", { comment, workoutDate });
+    const workoutDate = dateList.dates.currentDate.scheduledDate;
+    const id = dateList.dates.currentDate.id;
+    $api.post(`/profile/workouts/calendar/${id}`, { comment, workoutDate });
   }
 
   return (

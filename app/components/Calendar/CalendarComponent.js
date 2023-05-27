@@ -14,7 +14,7 @@ const CalendarComponent = ({ dateList }) => {
 
   function findAndSendId(selectedDay) {
     const dayId = allMarkedDates.find(
-      ({ date }) => date.slice(0, 10) === selectedDay
+      ({ scheduledDate }) => scheduledDate.slice(0, 10) === selectedDay
     );
     if (dayId) {
       dispatch(changeCurrentWorkout(dayId.id));
@@ -28,20 +28,35 @@ const CalendarComponent = ({ dateList }) => {
 
   // нет проверки на undefined входящего массива для методов forEach, slice
   dateList.history.forEach((el) => {
-    markedDay[el.date.slice(0, 10)] = {
-      selected: true,
-      selectedColor: "red",
-    };
+    if (el.workoutDate) {
+      markedDay[el.scheduledDate.slice(0, 10)] = {
+        selected: true,
+        selectedColor: "green",
+      };
+    } else {
+      markedDay[el.scheduledDate.slice(0, 10)] = {
+        selected: true,
+        selectedColor: "red",
+      };
+    }
   });
 
-  markedDay[dateList.currentDate.date.slice(0, 10)] = {
-    selected: true,
-    marked: true,
-    selectedColor: "purple",
-  };
+  if (dateList.currentDate.workoutDate) {
+    markedDay[dateList.currentDate.scheduledDate.slice(0, 10)] = {
+      selected: true,
+      marked: true,
+      selectedColor: "green",
+    };
+  } else {
+    markedDay[dateList.currentDate.scheduledDate.slice(0, 10)] = {
+      selected: true,
+      marked: true,
+      selectedColor: "purple",
+    };
+  }
 
   dateList.upcomingDates.forEach((el) => {
-    markedDay[el.date.slice(0, 10)] = {
+    markedDay[el.scheduledDate.slice(0, 10)] = {
       selected: true,
       selectedColor: "grey",
     };
@@ -51,6 +66,8 @@ const CalendarComponent = ({ dateList }) => {
     selected: true,
     selectedColor: "blue",
   };
+
+  // console.log(markedDay);
 
   return (
     <Calendar

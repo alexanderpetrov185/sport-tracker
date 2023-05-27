@@ -11,17 +11,20 @@ export const initCalendar = () => (dispatch) => {
         history: data.history.map((el) => {
           return {
             id: el.id,
-            date: el.scheduledDate,
+            scheduledDate: el.scheduledDate,
+            workoutDate: el.workoutDate,
           };
         }),
         currentDate: {
           id: data.current.id,
-          date: data.current.scheduledDate,
+          scheduledDate: data.current.scheduledDate,
+          workoutDate: data.current.workoutDate,
         },
         upcomingDates: data.upcoming.map((el) => {
           return {
             id: el.id,
-            date: el.scheduledDate,
+            scheduledDate: el.scheduledDate,
+            workoutDate: el.workoutDate,
           };
         }),
         workout: data.current.workout,
