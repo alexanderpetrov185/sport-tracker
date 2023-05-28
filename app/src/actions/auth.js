@@ -11,13 +11,17 @@ import {
 
 // Init (sessions)
 export const init = () => (dispatch) => {
-  AsyncStorage.getItem("token").then((token) => {
-    if (token) {
-      dispatch({
-        type: INIT_SUCCESS,
-      });
-    }
-  });
+  AsyncStorage.getItem("token")
+    .then((token) => {
+      if (token) {
+        dispatch({
+          type: INIT_SUCCESS,
+        });
+      }
+    })
+    .catch((error) => {
+      alert(error);
+    });
 };
 
 //LOGIN
@@ -52,17 +56,17 @@ export const register = (username, password) => (dispatch) => {
   $api
     .post("/register", { username, password })
     .then((response) => {
-      // Авторизация сразу после регистрации
-
-      // if (response.data.token) {
-      //   dispatch({
-      //     type: LOGIN_SUCCESS,
-      //     payload: response.data.token,
-      //   });
-      // }
       dispatch({
         type: REGISTER_SUCCESS,
       });
+      if (response.data.token) {
+        alert("вы успешно зарегистрированы");
+        AsyncStorage.setItem("token", response.data.token);
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: response.data.token,
+        });
+      }
     })
     .catch((error) => {
       alert(error);

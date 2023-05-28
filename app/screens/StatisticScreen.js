@@ -1,12 +1,13 @@
 import * as React from "react";
-import { FlatList, StyleSheet, TextInput } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 import { Text, View } from "react-native";
 import { Button } from "react-native-paper";
 import $api from "../src/http";
+import StatisticLineChart from "../components/UI/StatisticLineChart";
 
 const StatisticScreen = () => {
   const [weight, onChangeWeight] = React.useState("");
-  const [weightStatistic, onChangeWeightStatistic] = React.useState("");
+  const [weightStatistic, onChangeWeightStatistic] = React.useState([]);
 
   const reloadWeight = () => {
     $api.get("/profile/statistic/").then(({ data }) => {
@@ -47,12 +48,7 @@ const StatisticScreen = () => {
         Обновить вес
       </Button>
       <View>
-        <FlatList
-          data={weightStatistic}
-          renderItem={({ item }) => (
-            <Text>{item.date.slice(0, 10) + ": " + item.weight + "кг"}</Text>
-          )}
-        />
+        <StatisticLineChart data={weightStatistic} />
       </View>
     </View>
   );

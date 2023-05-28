@@ -40,7 +40,12 @@ const MyWorkoutScreen = ({ navigation }) => {
     setModalVisible(!modalVisible);
     const workoutDate = dateList.dates.currentDate.scheduledDate;
     const id = dateList.dates.currentDate.id;
-    $api.post(`/profile/workouts/calendar/${id}`, { comment, workoutDate });
+    $api
+      .post(`/profile/workouts/calendar/${id}`, { comment, workoutDate })
+      .then((response) => {
+        if (response.status === 200) dispatch(initCalendar());
+      })
+      .catch((error) => alert(error));
   }
 
   return (

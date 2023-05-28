@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
 import CurrentWorkoutList from "./CurrentWorkoutList";
 
@@ -8,7 +8,7 @@ const CurrentWorkout = ({ currentWorkout }) => {
     : currentWorkout.customName;
 
   return (
-    <View style={styles.container}>
+    <View>
       <Text>{customName}</Text>
       {currentWorkout.complex ? (
         <CurrentWorkoutList workouts={currentWorkout.complex} />
@@ -18,15 +18,5 @@ const CurrentWorkout = ({ currentWorkout }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    backgroundColor: "#fff",
-    padding: 5,
-    margin: 5,
-  },
-});
 
 export default CurrentWorkout;
