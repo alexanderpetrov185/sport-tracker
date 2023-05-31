@@ -34,8 +34,8 @@ const MyWorkoutScreen = ({ navigation }) => {
     };
   });
 
-  const dataLoading = dateList.loading;
-  // const dataLoading = useSelector((state) => state.loading);
+  // const dataLoading = dateList.loading;
+  const dataLoading = useSelector((state) => state.loading);
 
   function submitWorkout() {
     setModalVisible(!modalVisible);
@@ -49,13 +49,18 @@ const MyWorkoutScreen = ({ navigation }) => {
       .catch((error) => alert(error));
   }
 
-  console.log(dateList.loading);
+  // console.log(dateList.loading);
 
   return (
     <>
       {!dataLoading ? (
         <View>
-          <CalendarComponent dateList={dateList.dates} />
+          <CalendarComponent
+            dateList={dateList.dates}
+            // history={dateList.history}
+            // currentDate={dateList.currentDate}
+            // upcomingDates={dateList.upcomingDates}
+          />
           <Button
             mode="elevated"
             style={{ margin: 10 }}
