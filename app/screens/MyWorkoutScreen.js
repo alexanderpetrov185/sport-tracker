@@ -1,6 +1,6 @@
 import * as React from "react";
 import CalendarComponent from "../components/Calendar/CalendarComponent";
-import { Modal, StyleSheet, TextInput, View } from "react-native";
+import { Modal, ScrollView, StyleSheet, TextInput, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import CurrentWorkout from "../components/CurrentWorkout/CurrentWorkout";
 import { Button } from "react-native-paper";
@@ -35,6 +35,7 @@ const MyWorkoutScreen = ({ navigation }) => {
   });
 
   const dataLoading = dateList.loading;
+  // const dataLoading = useSelector((state) => state.loading);
 
   function submitWorkout() {
     setModalVisible(!modalVisible);
@@ -47,6 +48,8 @@ const MyWorkoutScreen = ({ navigation }) => {
       })
       .catch((error) => alert(error));
   }
+
+  console.log(dateList.loading);
 
   return (
     <>

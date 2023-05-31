@@ -7,7 +7,13 @@ import StatisticLineChart from "../components/UI/StatisticLineChart";
 
 const StatisticScreen = () => {
   const [weight, onChangeWeight] = React.useState("");
-  const [weightStatistic, onChangeWeightStatistic] = React.useState([]);
+  const [weightStatistic, onChangeWeightStatistic] = React.useState([
+    {
+      id: null,
+      date: "0000-00-00T00:00:00Z",
+      weight: 0,
+    },
+  ]);
 
   const reloadWeight = () => {
     $api.get("/profile/statistic/").then(({ data }) => {
@@ -30,6 +36,8 @@ const StatisticScreen = () => {
       });
   };
 
+  // console.log(weightStatistic);
+
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Ваш вес:</Text>
@@ -47,9 +55,7 @@ const StatisticScreen = () => {
       >
         Обновить вес
       </Button>
-      <View>
-        <StatisticLineChart data={weightStatistic} />
-      </View>
+      <StatisticLineChart data={weightStatistic} />
     </View>
   );
 };
