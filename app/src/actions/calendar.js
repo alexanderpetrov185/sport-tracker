@@ -9,31 +9,14 @@ export const initCalendar = () => (dispatch) => {
       dispatch({
         type: INIT_CALENDAR,
         payload: {
-          history: data.history.map((el) => {
-            return {
-              id: el.id,
-              scheduledDate: el.scheduledDate,
-              workoutDate: el.workoutDate,
-            };
-          }),
-          currentDate: {
-            id: data.current.id,
-            scheduledDate: data.current.scheduledDate,
-            workoutDate: data.current.workoutDate,
-          },
-          upcomingDates: data.upcoming.map((el) => {
-            return {
-              id: el.id,
-              scheduledDate: el.scheduledDate,
-              workoutDate: el.workoutDate,
-            };
-          }),
-          workout: data.current.workout,
+          history: data.history,
+          current: data.current,
+          upcoming: data.upcoming,
         },
       });
     })
     .catch((error) => {
-      alert("this", error);
+      alert(error);
     });
 };
 
@@ -56,5 +39,8 @@ export const changeCurrentWorkout = (id) => (dispatch) => {
 export const emptyDay = () => (dispatch) => {
   dispatch({
     type: EMPTYDAY_CALENDAR,
+    payload: {
+      workout: [],
+    },
   });
 };

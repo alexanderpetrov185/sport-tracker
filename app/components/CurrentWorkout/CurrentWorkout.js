@@ -3,20 +3,28 @@ import React from "react";
 import CurrentWorkoutList from "./CurrentWorkoutList";
 
 const CurrentWorkout = ({ currentWorkout }) => {
-  const customName = !currentWorkout.customName //если нет кастомного имени выводим "Тренировка"
-    ? "Тренировка: "
-    : currentWorkout.customName;
+  if (currentWorkout) {
+    const customName = !currentWorkout.customName //если нет кастомного имени выводим "Тренировка"
+      ? "Тренировка: "
+      : currentWorkout.customName;
 
-  return (
-    <View>
-      <Text>{customName}</Text>
-      {currentWorkout.complex ? (
-        <CurrentWorkoutList workouts={currentWorkout.complex} />
-      ) : (
+    return (
+      <View>
+        <Text>{customName}</Text>
+        {currentWorkout.complex ? (
+          <CurrentWorkoutList workouts={currentWorkout.complex} />
+        ) : (
+          <Text>{"В этот день тренировок нет"}</Text>
+        )}
+      </View>
+    );
+  } else {
+    return (
+      <View>
         <Text>{"В этот день тренировок нет"}</Text>
-      )}
-    </View>
-  );
+      </View>
+    );
+  }
 };
 
 export default CurrentWorkout;

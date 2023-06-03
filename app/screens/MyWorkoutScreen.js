@@ -1,6 +1,6 @@
 import * as React from "react";
 import CalendarComponent from "../components/Calendar/CalendarComponent";
-import { Modal, ScrollView, StyleSheet, TextInput, View } from "react-native";
+import { Modal, StyleSheet, TextInput, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import CurrentWorkout from "../components/CurrentWorkout/CurrentWorkout";
 import { Button } from "react-native-paper";
@@ -26,8 +26,8 @@ const MyWorkoutScreen = ({ navigation }) => {
     return {
       dates: {
         history: state.calendarReducer.history,
-        currentDate: state.calendarReducer.currentDate,
-        upcomingDates: state.calendarReducer.upcomingDates,
+        current: state.calendarReducer.current,
+        upcoming: state.calendarReducer.upcoming,
       },
       workout: state.calendarReducer.workout,
       loading: state.calendarReducer.loading,
@@ -38,14 +38,14 @@ const MyWorkoutScreen = ({ navigation }) => {
 
   function submitWorkout() {
     setModalVisible(!modalVisible);
-    const workoutDate = dateList.dates.currentDate.scheduledDate;
-    const id = dateList.dates.currentDate.id;
+    const workoutDate = dateList.dates.current.scheduledDate;
+    const id = dateList.dates.current.id;
     $api
       .post(`/profile/workouts/calendar/${id}`, { comment, workoutDate })
       .then((response) => {
         if (response.status === 200) dispatch(initCalendar());
       })
-      .catch((error) => alert("here", error));
+      .catch((error) => alert("submitWorkout", error));
   }
 
   return (

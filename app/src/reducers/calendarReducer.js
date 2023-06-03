@@ -2,14 +2,13 @@ import {
   INIT_CALENDAR,
   CHANGE_CALENDAR,
   EMPTYDAY_CALENDAR,
-  LOGOUT,
 } from "../actions/types";
 
 const initialState = {
   history: [],
-  currentDate: [],
-  upcomingDates: [],
-  workout: "",
+  current: {},
+  upcoming: [],
+  workout: [],
   loading: true,
 };
 
@@ -18,14 +17,22 @@ const calendarReducer = (state = initialState, action) => {
 
   switch (type) {
     case INIT_CALENDAR:
-      return {
-        ...state,
-        history: payload.history,
-        currentDate: payload.currentDate,
-        upcomingDates: payload.upcomingDates,
-        workout: payload.workout,
-        loading: false,
-      };
+      return payload.current // если текущая тренировка есть
+        ? {
+            ...state,
+            history: payload.history,
+            current: payload.current,
+            upcoming: payload.upcoming,
+            workout: payload.current.workout,
+            loading: false,
+          }
+        : {
+            ...state,
+            history: payload.history,
+            current: payload.current,
+            upcoming: payload.upcoming,
+            loading: false,
+          };
     case CHANGE_CALENDAR:
       return {
         ...state,
@@ -34,7 +41,7 @@ const calendarReducer = (state = initialState, action) => {
     case EMPTYDAY_CALENDAR:
       return {
         ...state,
-        workout: "",
+        workout: payload.workout,
       };
     default:
       return state;

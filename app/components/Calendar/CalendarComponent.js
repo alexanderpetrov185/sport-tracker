@@ -5,69 +5,68 @@ import { changeCurrentWorkout, emptyDay } from "../../src/actions/calendar";
 
 const CalendarComponent = ({ dateList }) => {
   const dispatch = useDispatch();
-
-  const allMarkedDates = [
-    ...dateList.history,
-    dateList.currentDate,
-    ...dateList.upcomingDates,
-  ];
-
-  function findAndSendId(selectedDay) {
-    const dayId = allMarkedDates.find(
-      ({ scheduledDate }) => scheduledDate.slice(0, 10) === selectedDay
-    );
-    if (dayId) {
-      dispatch(changeCurrentWorkout(dayId.id));
-    } else {
-      dispatch(emptyDay());
-    }
-  }
+  let allMarkedDates = [];
 
   const [selected, setSelected] = useState();
   const markedDay = {};
 
-  //переписать проверки на undefined входящего массива для методов forEach, slice, сейчас голова уже не рубит
-  dateList.history.forEach((el) => {
-    if (el.workoutDate) {
-      markedDay[el.scheduledDate.slice(0, 10)] = {
-        selected: true,
-        selectedColor: "green",
-      };
-    } else {
-      markedDay[el.scheduledDate.slice(0, 10)] = {
-        selected: true,
-        selectedColor: "red",
-      };
-    }
-  });
+  dateList.history.length !== 0
+    ? dateList.history.forEach((el) => {
+        allMarkedDates.push(el);
+        el.workoutDate
+          ? (markedDay[el.scheduledDate.slice(0, 10)] = {
+              selected: true,
+              selectedColor: "green",
+            })
+          : (markedDay[el.scheduledDate.slice(0, 10)] = {
+              selected: true,
+              selectedColor: "red",
+            });
+      })
+    : dateList.history;
 
-  if (dateList.currentDate.workoutDate) {
-    markedDay[dateList.currentDate.scheduledDate.slice(0, 10)] = {
-      selected: true,
-      marked: true,
-      selectedColor: "green",
-    };
-  } else {
-    if (dateList.currentDate.scheduledDate) {
-      markedDay[dateList.currentDate.scheduledDate.slice(0, 10)] = {
-        selected: true,
-        marked: true,
-        selectedColor: "purple",
-      };
-    }
-  }
+  dateList.upcoming.length !== 0
+    ? dateList.upcoming.forEach((el) => {
+        allMarkedDates.push(el);
+        markedDay[el.scheduledDate.slice(0, 10)] = {
+          selected: true,
+          selectedColor: "grey",
+        };
+      })
+    : dateList.upcoming;
 
-  dateList.upcomingDates.forEach((el) => {
-    markedDay[el.scheduledDate.slice(0, 10)] = {
-      selected: true,
-      selectedColor: "grey",
-    };
-  });
+  dateList.current
+    ? (allMarkedDates.push(dateList.current),
+      dateList.current.workoutDate
+        ? (markedDay[dateList.current.scheduledDate.slice(0, 10)] = {
+            selected: true,
+            marked: true,
+            selectedColor: "green",
+          })
+        : dateList.current.scheduled
+        ? (markedDay[dateList.current.scheduledDate.slice(0, 10)] = {
+            selected: true,
+            marked: true,
+            selectedColor: "purple",
+          })
+        : dateList.current)
+    : dateList.current;
 
   markedDay[selected] = {
     selected: true,
     selectedColor: "blue",
   };
+
+  function findAndSendId(selectedDay) {
+    const dayToSelect = allMarkedDates.find(
+      ({ scheduledDate }) => scheduledDate.slice(0, 10) === selectedDay
+    );
+    if (dayToSelect) {
+      dispatch(changeCurrentWorkout(dayToSelect.id));
+    } else {
+      dispatch(emptyDay());
+    }
+  }
 
   return (
     <Calendar
