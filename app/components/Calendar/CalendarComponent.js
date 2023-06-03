@@ -43,7 +43,7 @@ const CalendarComponent = ({ dateList }) => {
             marked: true,
             selectedColor: "green",
           })
-        : dateList.current.scheduled
+        : dateList.current.scheduledDate
         ? (markedDay[dateList.current.scheduledDate.slice(0, 10)] = {
             selected: true,
             marked: true,
