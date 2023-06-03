@@ -6,8 +6,6 @@ export const initCalendar = () => (dispatch) => {
   $api
     .get("/profile/workouts/calendar")
     .then(({ data }) => {
-      // if (data.current) {
-      //если есть дата текущей тренировки
       dispatch({
         type: INIT_CALENDAR,
         payload: {
@@ -33,14 +31,9 @@ export const initCalendar = () => (dispatch) => {
           workout: data.current.workout,
         },
       });
-      // } else {
-      //   dispatch({
-      //     type: INIT_CALENDAR,
-      //   });
-      // }
     })
     .catch((error) => {
-      alert(error);
+      alert("this", error);
     });
 };
 

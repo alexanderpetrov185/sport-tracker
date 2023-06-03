@@ -2,6 +2,7 @@ import {
   INIT_CALENDAR,
   CHANGE_CALENDAR,
   EMPTYDAY_CALENDAR,
+  LOGOUT,
 } from "../actions/types";
 
 const initialState = {

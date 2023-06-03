@@ -34,7 +34,6 @@ const MyWorkoutScreen = ({ navigation }) => {
     };
   });
 
-  // const dataLoading = dateList.loading;
   const dataLoading = useSelector((state) => state.loading);
 
   function submitWorkout() {
@@ -46,21 +45,14 @@ const MyWorkoutScreen = ({ navigation }) => {
       .then((response) => {
         if (response.status === 200) dispatch(initCalendar());
       })
-      .catch((error) => alert(error));
+      .catch((error) => alert("here", error));
   }
-
-  // console.log(dateList.loading);
 
   return (
     <>
       {!dataLoading ? (
         <View>
-          <CalendarComponent
-            dateList={dateList.dates}
-            // history={dateList.history}
-            // currentDate={dateList.currentDate}
-            // upcomingDates={dateList.upcomingDates}
-          />
+          <CalendarComponent dateList={dateList.dates} />
           <Button
             mode="elevated"
             style={{ margin: 10 }}

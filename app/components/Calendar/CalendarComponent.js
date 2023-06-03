@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 import { changeCurrentWorkout, emptyDay } from "../../src/actions/calendar";
 
 const CalendarComponent = ({ dateList }) => {
-  console.log(dateList);
-
   const dispatch = useDispatch();
 
   const allMarkedDates = [
@@ -70,8 +68,6 @@ const CalendarComponent = ({ dateList }) => {
     selected: true,
     selectedColor: "blue",
   };
-
-  // console.log(markedDay);
 
   return (
     <Calendar
