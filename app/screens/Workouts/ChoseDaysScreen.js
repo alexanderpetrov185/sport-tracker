@@ -10,13 +10,13 @@ import { Button } from "react-native-paper";
 import $api from "../../src/http";
 
 const Days = [
-  { day: "Monday", selected: null, id: 1 },
-  { day: "Tuesday", selected: null, id: 2 },
-  { day: "Wednesday", selected: null, id: 3 },
-  { day: "Thursday", selected: null, id: 4 },
-  { day: "Friday", selected: null, id: 5 },
-  { day: "Saturday", selected: null, id: 6 },
-  { day: "Sunday", selected: null, id: 7 },
+  { day: "Monday", selected: false, id: 1 },
+  { day: "Tuesday", selected: false, id: 2 },
+  { day: "Wednesday", selected: false, id: 3 },
+  { day: "Thursday", selected: false, id: 4 },
+  { day: "Friday", selected: false, id: 5 },
+  { day: "Saturday", selected: false, id: 6 },
+  { day: "Sunday", selected: false, id: 7 },
 ];
 
 const Item = ({ item, onPress, backgroundColor, textColor }) => (
@@ -38,7 +38,14 @@ const ChoseDaysScreen = ({ route, navigation }) => {
     return (
       <Item
         item={item}
-        onPress={() => setSelectedId(item.id)}
+        onPress={() => {
+          if (selectedId) {
+            setSelectedId();
+            item.selected = false;
+          } else {
+            setSelectedId(item.id);
+          }
+        }}
         backgroundColor={item.selected ? "#ffe" : "#000"}
         textColor={item.selected ? "#000" : "#ffe"}
       />
@@ -49,9 +56,7 @@ const ChoseDaysScreen = ({ route, navigation }) => {
 
   const submitDays = () => {
     const schedule = Days.filter((el) => {
-      if (el.selected) {
-        return el.day;
-      }
+      if (el.selected) return el.day;
     }).map((el) => el.day);
 
     $api
