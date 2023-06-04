@@ -39,9 +39,9 @@ const ChoseDaysScreen = ({ route, navigation }) => {
       <Item
         item={item}
         onPress={() => {
-          if (selectedId) {
+          if (item.id === selectedId) {
             setSelectedId();
-            item.selected = false;
+            item.selected = !item.selected;
           } else {
             setSelectedId(item.id);
           }
