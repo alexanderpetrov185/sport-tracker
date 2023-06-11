@@ -32,6 +32,7 @@ const MyWorkoutScreen = ({ navigation }) => {
       },
       workout: state.calendarReducer.workout,
       selectedDate: state.calendarReducer.selectedDate,
+      comment: state.calendarReducer.comment,
       loading: state.calendarReducer.loading,
     };
   });
@@ -54,7 +55,6 @@ const MyWorkoutScreen = ({ navigation }) => {
     <>
       {!dataLoading ? (
         <View style={{ flex: 1, padding: 10 }}>
-          {/* <View> */}
           <View>
             <CalendarComponent dateList={dateList.dates} />
             <Button
@@ -66,35 +66,36 @@ const MyWorkoutScreen = ({ navigation }) => {
             </Button>
           </View>
           <CurrentWorkout currentWorkout={dateList.workout} />
-          {/* </View> */}
-          {/* <View style={styles.centeredView}>
-            <Modal
-              animationType="fade"
-              transparent={true}
-              visible={modalVisible}
-              onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                setModalVisible(!modalVisible);
-              }}
-            >
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                  <TextInput
-                    onChangeText={onChangeText}
-                    value={comment}
-                    style={styles.modalText}
-                  />
-                  <Button
-                    mode="elevated"
-                    style={{ margin: 10 }}
-                    onPress={() => submitWorkout()}
-                  >
-                    Отправить
-                  </Button>
+          <View>
+            <View style={styles.centeredView}>
+              <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                  Alert.alert("Modal has been closed.");
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    <TextInput
+                      onChangeText={onChangeText}
+                      value={comment}
+                      style={styles.modalText}
+                    />
+                    <Button
+                      mode="elevated"
+                      style={{ margin: 10 }}
+                      onPress={() => submitWorkout()}
+                    >
+                      Отправить
+                    </Button>
+                  </View>
                 </View>
-              </View>
-            </Modal>
-          </View> */}
+              </Modal>
+            </View>
+          </View>
         </View>
       ) : (
         <SplashScreen />
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "rgba(0,0,0,0.8)",
   },
   modalView: {
     margin: 20,

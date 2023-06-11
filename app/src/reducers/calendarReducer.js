@@ -11,6 +11,7 @@ const initialState = {
   workout: [],
   loading: true,
   selectedDate: {},
+  comment: null,
 };
 
 const calendarReducer = (state = initialState, action) => {
@@ -23,6 +24,7 @@ const calendarReducer = (state = initialState, action) => {
             ...state,
             history: payload.history,
             current: payload.current,
+            comment: payload.current.comment,
             upcoming: payload.upcoming,
             workout: payload.current.workout,
             selectedDate: payload.current,
