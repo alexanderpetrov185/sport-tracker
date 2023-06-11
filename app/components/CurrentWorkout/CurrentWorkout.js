@@ -9,7 +9,7 @@ const CurrentWorkout = ({ currentWorkout }) => {
       : currentWorkout.customName;
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Text>{customName}</Text>
         {currentWorkout.complex ? (
           <CurrentWorkoutList workouts={currentWorkout.complex} />

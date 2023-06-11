@@ -29,38 +29,40 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
   }, []);
 
   return (
-    <View>
-      <Button
-        mode="elevated"
-        style={{ marginTop: 20 }}
-        onPress={() =>
-          navigation.navigate("ChoseDaysScreen", {
-            id: id,
-          })
-        }
-      >
-        Выбрать
-      </Button>
-      <FlatList
-        data={listOfWorkouts}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.container}
-            onPress={() =>
-              navigation.navigate("ExercisesScreen", {
-                name: item.name,
-                id: item.id,
-              })
-            }
-          >
-            <WorkoutsList
-              el={item.customName}
-              id={item.id}
-              wokoutNum={listOfWorkouts.indexOf(item)}
-            />
-          </TouchableOpacity>
-        )}
-      />
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <FlatList
+          data={listOfWorkouts}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.container}
+              onPress={() =>
+                navigation.navigate("ExercisesScreen", {
+                  name: item.name,
+                  id: item.id,
+                })
+              }
+            >
+              <WorkoutsList
+                el={item.customName}
+                id={item.id}
+                wokoutNum={listOfWorkouts.indexOf(item)}
+              />
+            </TouchableOpacity>
+          )}
+        />
+        <Button
+          mode="elevated"
+          style={{ marginTop: 20, marginBottom: 20, backgroundColor: "black" }}
+          onPress={() =>
+            navigation.navigate("ChoseDaysScreen", {
+              id: id,
+            })
+          }
+        >
+          Выбрать
+        </Button>
+      </View>
     </View>
   );
 };

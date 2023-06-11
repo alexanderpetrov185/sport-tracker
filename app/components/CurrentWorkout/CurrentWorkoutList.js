@@ -7,12 +7,16 @@ const ComplexItem = ({ itemComplex }) => {
 
 const CurrentWorkoutList = ({ workouts }) => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <FlatList
         data={workouts}
         renderItem={({ item }) => {
           if (!item.complex) {
-            return <Text key={item.id}>{item.name}</Text>;
+            return (
+              <View>
+                <Text key={item.id}>{item.name}</Text>
+              </View>
+            );
           } else {
             return (
               <View>

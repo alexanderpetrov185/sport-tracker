@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { initCalendar } from "../src/actions/calendar";
 import SplashScreen from "./SplashScreen";
 import $api from "../src/http";
+import { StatusBar } from "expo-status-bar";
 
 const MyWorkoutScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -41,14 +42,6 @@ const MyWorkoutScreen = ({ navigation }) => {
     setModalVisible(!modalVisible);
     const workoutDate = dateList.selectedDate.scheduledDate;
     const id = dateList.selectedDate.id;
-    // const today = new Date().toISOString();
-    // console.log(
-    //   "today:",
-    //   today.slice(0, 10),
-    //   "workoutDate",
-    //   workoutDate.slice(0, 10)
-    // );
-    // console.log(today > workoutDate);
     $api
       .post(`/profile/workouts/calendar/${id}`, { comment, workoutDate })
       .then((response) => {
@@ -60,16 +53,21 @@ const MyWorkoutScreen = ({ navigation }) => {
   return (
     <>
       {!dataLoading ? (
-        <View>
-          <CalendarComponent dateList={dateList.dates} />
-          <Button
-            mode="elevated"
-            style={{ margin: 10 }}
-            onPress={() => setModalVisible(true)}
-          >
-            Подтвердить тренировку
-          </Button>
-          <View style={styles.centeredView}>
+        <View style={{ flex: 1, padding: 10 }}>
+          {/* <View> */}
+          <View>
+            <CalendarComponent dateList={dateList.dates} />
+            <Button
+              mode="elevated"
+              style={{ margin: 10 }}
+              onPress={() => setModalVisible(true)}
+            >
+              Подтвердить тренировку
+            </Button>
+          </View>
+          <CurrentWorkout currentWorkout={dateList.workout} />
+          {/* </View> */}
+          {/* <View style={styles.centeredView}>
             <Modal
               animationType="fade"
               transparent={true}
@@ -96,8 +94,7 @@ const MyWorkoutScreen = ({ navigation }) => {
                 </View>
               </View>
             </Modal>
-          </View>
-          <CurrentWorkout currentWorkout={dateList.workout} />
+          </View> */}
         </View>
       ) : (
         <SplashScreen />
