@@ -30,6 +30,7 @@ const MyWorkoutScreen = ({ navigation }) => {
         upcoming: state.calendarReducer.upcoming,
       },
       workout: state.calendarReducer.workout,
+      selectedDate: state.calendarReducer.selectedDate,
       loading: state.calendarReducer.loading,
     };
   });
@@ -38,8 +39,16 @@ const MyWorkoutScreen = ({ navigation }) => {
 
   function submitWorkout() {
     setModalVisible(!modalVisible);
-    const workoutDate = dateList.dates.current.scheduledDate;
-    const id = dateList.dates.current.id;
+    const workoutDate = dateList.selectedDate.scheduledDate;
+    const id = dateList.selectedDate.id;
+    // const today = new Date().toISOString();
+    // console.log(
+    //   "today:",
+    //   today.slice(0, 10),
+    //   "workoutDate",
+    //   workoutDate.slice(0, 10)
+    // );
+    // console.log(today > workoutDate);
     $api
       .post(`/profile/workouts/calendar/${id}`, { comment, workoutDate })
       .then((response) => {

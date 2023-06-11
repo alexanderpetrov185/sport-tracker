@@ -27,6 +27,7 @@ export const changeCurrentWorkout = (id) => (dispatch) => {
       dispatch({
         type: CHANGE_CALENDAR,
         payload: {
+          selectedDate: data,
           workout: data.workout,
         },
       });

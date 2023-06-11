@@ -10,6 +10,7 @@ const initialState = {
   upcoming: [],
   workout: [],
   loading: true,
+  selectedDate: {},
 };
 
 const calendarReducer = (state = initialState, action) => {
@@ -24,6 +25,7 @@ const calendarReducer = (state = initialState, action) => {
             current: payload.current,
             upcoming: payload.upcoming,
             workout: payload.current.workout,
+            selectedDate: payload.current,
             loading: false,
           }
         : {
@@ -36,6 +38,7 @@ const calendarReducer = (state = initialState, action) => {
     case CHANGE_CALENDAR:
       return {
         ...state,
+        selectedDate: payload.selectedDate,
         workout: payload.workout,
       };
     case EMPTYDAY_CALENDAR:
