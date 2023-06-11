@@ -2,11 +2,11 @@ import { View, Text } from "react-native";
 import React from "react";
 import CurrentWorkoutList from "./CurrentWorkoutList";
 
-const CurrentWorkout = ({ currentWorkout }) => {
-  if (currentWorkout) {
+const CurrentWorkout = ({ currentWorkout, date }) => {
+  if (currentWorkout && date) {
     const customName = !currentWorkout.customName //если нет кастомного имени выводим "Тренировка"
-      ? "Тренировка: "
-      : currentWorkout.customName;
+      ? `Тренировка (${date.slice(0, 10)}): `
+      : currentWorkout.customName + ` (${date.slice(0, 10)}): `;
 
     return (
       <View style={{ flex: 1 }}>

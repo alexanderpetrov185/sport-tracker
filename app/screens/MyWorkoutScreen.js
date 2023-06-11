@@ -1,6 +1,6 @@
 import * as React from "react";
 import CalendarComponent from "../components/Calendar/CalendarComponent";
-import { Modal, StyleSheet, TextInput, View } from "react-native";
+import { Modal, StyleSheet, Text, TextInput, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import CurrentWorkout from "../components/CurrentWorkout/CurrentWorkout";
 import { Button } from "react-native-paper";
@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { initCalendar } from "../src/actions/calendar";
 import SplashScreen from "./SplashScreen";
 import $api from "../src/http";
-import { StatusBar } from "expo-status-bar";
 
 const MyWorkoutScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -65,7 +64,11 @@ const MyWorkoutScreen = ({ navigation }) => {
               Подтвердить тренировку
             </Button>
           </View>
-          <CurrentWorkout currentWorkout={dateList.workout} />
+          {dateList.comment ? <Text>{dateList.comment}</Text> : <></>}
+          <CurrentWorkout
+            date={dateList.selectedDate.scheduledDate}
+            currentWorkout={dateList.workout}
+          />
           <View>
             <View style={styles.centeredView}>
               <Modal

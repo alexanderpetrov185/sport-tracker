@@ -41,6 +41,7 @@ const calendarReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedDate: payload.selectedDate,
+        comment: payload.comment,
         workout: payload.workout,
       };
     case EMPTYDAY_CALENDAR:

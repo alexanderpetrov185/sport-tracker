@@ -29,6 +29,7 @@ export const changeCurrentWorkout = (id) => (dispatch) => {
         payload: {
           selectedDate: data,
           workout: data.workout,
+          comment: data.comment,
         },
       });
     })
