@@ -5,8 +5,8 @@ import CurrentWorkoutList from "./CurrentWorkoutList";
 const CurrentWorkout = ({ currentWorkout, date }) => {
   if (currentWorkout && date) {
     const customName = !currentWorkout.customName //если нет кастомного имени выводим "Тренировка"
-      ? `Тренировка (${date.slice(0, 10)}): `
-      : currentWorkout.customName + ` (${date.slice(0, 10)}): `;
+      ? `Тренировка (${date.slice(0, 10)}) `
+      : currentWorkout.customName + ` (${date.slice(0, 10)}) `;
 
     return (
       <View style={{ flex: 1 }}>

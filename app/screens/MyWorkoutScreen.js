@@ -11,7 +11,7 @@ import $api from "../src/http";
 
 const MyWorkoutScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = React.useState(false);
-  const [comment, onChangeText] = React.useState("Some comment here");
+  const [comment, onChangeText] = React.useState();
 
   // change calendar state
   const dispatch = useDispatch();
@@ -86,6 +86,10 @@ const MyWorkoutScreen = ({ navigation }) => {
                       onChangeText={onChangeText}
                       value={comment}
                       style={styles.modalText}
+                      multiline={true}
+                      numberOfLines={5}
+                      maxLength={50}
+                      placeholder="Some comment here"
                     />
                     <Button
                       mode="elevated"
@@ -117,10 +121,11 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.8)",
   },
   modalView: {
-    margin: 20,
+    width: "85%",
+    margin: 10,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    padding: 15,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -131,13 +136,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
   modalText: {
+    width: "100%",
+    padding: 10,
     marginBottom: 15,
-    textAlign: "center",
+    textAlign: "left",
   },
 });
