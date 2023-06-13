@@ -10,7 +10,9 @@ const initialState = {
   upcoming: [],
   workout: [],
   loading: true,
-  selectedDate: {},
+  selectedDate: {
+    scheduledDate: new Date().toISOString(),
+  },
   comment: null,
 };
 
