@@ -65,6 +65,8 @@ const MyWorkoutScreen = ({ navigation }) => {
               marginTop: 20,
               marginBottom: 20,
               backgroundColor: "black",
+              borderWidth: 1,
+              borderColor: "white",
             }}
             onPress={() => setModalVisible(true)}
             disabled={Object.keys(dateList.workout).length > 0 ? false : true}
@@ -112,6 +114,8 @@ const MyWorkoutScreen = ({ navigation }) => {
                       marginTop: 20,
                       marginBottom: 20,
                       backgroundColor: "black",
+                      borderWidth: 1,
+                      borderColor: "white",
                     }}
                     onPress={() => submitWorkout()}
                   >

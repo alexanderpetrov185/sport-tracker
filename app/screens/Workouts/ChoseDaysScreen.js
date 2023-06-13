@@ -88,6 +88,8 @@ const ChoseDaysScreen = ({ route, navigation }) => {
           marginTop: 20,
           marginBottom: 20,
           backgroundColor: "black",
+          borderWidth: 1,
+          borderColor: "white",
         }}
         onPress={submitDays}
       >

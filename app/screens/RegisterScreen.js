@@ -29,6 +29,8 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 5,
     fontWeight: "bold",
+    textShadowColor: "black",
+    textShadowOffset: { width: 1, height: 1 },
   },
 });
 
@@ -69,6 +71,8 @@ const RegisterScreen = ({ navigation }) => {
               marginTop: 20,
               marginBottom: 20,
               backgroundColor: "black",
+              borderWidth: 1,
+              borderColor: "#bfbfbf",
             }}
             onPress={submit}
           >
@@ -78,9 +82,11 @@ const RegisterScreen = ({ navigation }) => {
             mode="elevated"
             textColor="white"
             style={{
-              marginTop: 20,
-              marginBottom: 20,
+              marginTop: 10,
+              marginBottom: 10,
               backgroundColor: "black",
+              borderWidth: 1,
+              borderColor: "#bfbfbf",
             }}
             onPress={() => navigation.navigate("LoginScreen")}
           >
