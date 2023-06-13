@@ -9,7 +9,7 @@ const initialState = {
   history: [],
   current: {},
   upcoming: [],
-  workout: [],
+  workout: {},
   loading: true,
   selectedDate: {
     scheduledDate: new Date().toISOString(),
@@ -59,7 +59,9 @@ const calendarReducer = (state = initialState, action) => {
     case EMPTYDAY_CALENDAR:
       return {
         ...state,
-        workout: payload.workout,
+        workout: {},
+        comment: null,
+        loading: false,
       };
     default:
       return state;

@@ -64,8 +64,5 @@ export const changeCurrentWorkout = (id) => (dispatch) => {
 export const emptyDay = () => (dispatch) => {
   dispatch({
     type: EMPTYDAY_CALENDAR,
-    payload: {
-      workout: [],
-    },
   });
 };

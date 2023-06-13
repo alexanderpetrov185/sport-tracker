@@ -36,8 +36,6 @@ const MyWorkoutScreen = ({ navigation }) => {
     };
   });
 
-  // console.log(dateList.selectedDate.scheduledDate);
-
   const dataLoading = useSelector((state) => state.calendarReducer.loading);
 
   function submitWorkout() {
@@ -64,6 +62,7 @@ const MyWorkoutScreen = ({ navigation }) => {
             mode="elevated"
             style={{ margin: 10 }}
             onPress={() => setModalVisible(true)}
+            disabled={Object.keys(dateList.workout).length > 0 ? false : true}
           >
             Подтвердить тренировку
           </Button>
