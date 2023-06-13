@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 45,
-    color: "hotpink",
+    color: "white",
     marginBottom: 5,
     fontWeight: "bold",
   },
@@ -62,12 +62,26 @@ const RegisterScreen = ({ navigation }) => {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
-          <Button mode="contained" style={{ marginTop: 20 }} onPress={submit}>
+          <Button
+            mode="elevated"
+            textColor="white"
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+              backgroundColor: "black",
+            }}
+            onPress={submit}
+          >
             Confirm
           </Button>
           <Button
-            mode="contained"
-            style={{ marginTop: 20 }}
+            mode="elevated"
+            textColor="white"
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+              backgroundColor: "black",
+            }}
             onPress={() => navigation.navigate("LoginScreen")}
           >
             To Login

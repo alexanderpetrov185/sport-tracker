@@ -7,8 +7,13 @@ import { Button } from "react-native-paper";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "black",
+    padding: 20,
+    textAlign: "center",
+    borderRadius: 5,
+    marginTop: 10,
+    marginHorizontal: 20,
   },
 });
 
@@ -33,7 +38,12 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
       <View style={{ flex: 1 }}>
         <Button
           mode="elevated"
-          style={{ marginTop: 20, marginBottom: 20, backgroundColor: "black" }}
+          textColor="white"
+          style={{
+            marginTop: 20,
+            marginBottom: 20,
+            backgroundColor: "black",
+          }}
           onPress={() =>
             navigation.navigate("ChoseDaysScreen", {
               id: id,

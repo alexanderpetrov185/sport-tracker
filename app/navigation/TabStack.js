@@ -14,8 +14,8 @@ const TabStack = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "black",
+        tabBarActiveTintColor: "purple",
+        tabBarInactiveTintColor: "grey",
       }}
     >
       <Tab.Screen

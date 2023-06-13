@@ -13,7 +13,16 @@ const ProfileScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Profile!</Text>
-      <Button mode="contained" style={{ marginTop: 20 }} onPress={submit}>
+      <Button
+        mode="elevated"
+        textColor="white"
+        style={{
+          marginTop: 20,
+          marginBottom: 20,
+          backgroundColor: "black",
+        }}
+        onPress={submit}
+      >
         Logout
       </Button>
     </View>

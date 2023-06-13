@@ -59,25 +59,38 @@ const ChoseDaysScreen = ({ route, navigation }) => {
       if (el.selected) return el.day;
     }).map((el) => el.day);
 
-    $api
-      .post("/profile/workouts", { workoutPlan, schedule })
-      .then((response) => {
-        if (response) {
-          navigation.navigate("MyWorkoutScreen");
-          navigation.reset({
-            index: 0,
-            routes: [{ name: "MyWorkoutScreen" }],
-          });
-        }
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    if (schedule.length > 0) {
+      $api
+        .post("/profile/workouts", { workoutPlan, schedule })
+        .then((response) => {
+          if (response) {
+            navigation.navigate("MyWorkoutScreen");
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "MyWorkoutScreen" }],
+            });
+          }
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    } else {
+      alert("Вы должны выбрать дни");
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Button mode="elevated" style={{ margin: 20 }} onPress={submitDays}>
+      <Button
+        mode="elevated"
+        textColor="white"
+        style={{
+          marginTop: 20,
+          marginBottom: 20,
+          backgroundColor: "black",
+        }}
+        onPress={submitDays}
+      >
         Выбрать
       </Button>
       <FlatList
@@ -97,7 +110,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     marginTop: 20,
-    width: "100%",
+    marginHorizontal: 20,
   },
   container: {
     flex: 1,

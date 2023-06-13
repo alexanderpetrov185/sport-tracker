@@ -5,7 +5,7 @@ import { View } from "react-native";
 const WorkoutsList = ({ el, id, wokoutNum }) => {
   if (el) {
     return (
-      <View style={styles.container}>
+      <View>
         <Text style={styles.text} key={id}>
           {el}
         </Text>
@@ -13,7 +13,7 @@ const WorkoutsList = ({ el, id, wokoutNum }) => {
     );
   } else {
     return (
-      <View style={styles.container}>
+      <View>
         <Text style={styles.text} key={id}>
           Тренировка {wokoutNum + 1}
         </Text>
@@ -23,21 +23,9 @@ const WorkoutsList = ({ el, id, wokoutNum }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    backgroundColor: "beige",
-    margin: 5,
-    padding: 5,
-    borderWidth: 5,
-  },
   text: {
-    padding: 20,
     textAlign: "center",
-    borderRadius: 5,
-    backgroundColor: "burlywood",
-    borderWidth: 1,
-    width: "100%",
+    color: "white",
   },
 });
 

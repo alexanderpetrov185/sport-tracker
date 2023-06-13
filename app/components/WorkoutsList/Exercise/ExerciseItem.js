@@ -17,18 +17,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
-    backgroundColor: "beige",
-    margin: 5,
-    padding: 5,
-    borderWidth: 5,
-  },
-  text: {
+    backgroundColor: "black",
     padding: 20,
     textAlign: "center",
     borderRadius: 5,
-    backgroundColor: "burlywood",
-    borderWidth: 1,
-    width: "100%",
+    marginTop: 20,
+    marginHorizontal: 20,
+  },
+  text: {
+    fontWeight: 700,
+    fontSize: 20,
+    textAlign: "center",
+    color: "white",
+    margin: 10,
   },
 });
 

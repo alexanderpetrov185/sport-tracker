@@ -30,7 +30,7 @@ const ExerciseList = ({ listOfExercises }) => {
     }
 
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1 }}>
         <FlatList
           data={newListOfEx}
           renderItem={({ item }) => (
@@ -41,15 +41,5 @@ const ExerciseList = ({ listOfExercises }) => {
     );
   }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    backgroundColor: "#fff",
-    padding: 5,
-    margin: 5,
-  },
-});
 
 export default ExerciseList;

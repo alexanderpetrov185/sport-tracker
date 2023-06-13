@@ -12,7 +12,16 @@ const CurrentWorkout = ({ currentWorkout, date }) => {
       <View style={{ flex: 1 }}>
         {currentWorkout.complex ? (
           <>
-            <Text>{customName + ` (${date.slice(0, 10)})`}</Text>
+            <Text
+              style={{
+                borderTopWidth: 1,
+                borderBottomWidth: 1,
+                paddingRight: 15,
+                marginVertical: 3,
+              }}
+            >
+              {customName + ` (${date.slice(0, 10)})`}
+            </Text>
             <CurrentWorkoutList workouts={currentWorkout.complex} />
           </>
         ) : (

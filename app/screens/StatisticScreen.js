@@ -50,7 +50,12 @@ const StatisticScreen = () => {
       />
       <Button
         mode="elevated"
-        style={{ margin: 10 }}
+        textColor="white"
+        style={{
+          marginTop: 20,
+          marginBottom: 20,
+          backgroundColor: "black",
+        }}
         onPress={() => weightCreate()}
       >
         Обновить вес

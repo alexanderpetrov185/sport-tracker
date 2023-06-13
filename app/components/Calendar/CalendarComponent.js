@@ -17,7 +17,7 @@ const CalendarComponent = ({ dateList, selectedDate }) => {
       el.workoutDate
         ? (markedDay[el.scheduledDate.slice(0, 10)] = {
             selected: true,
-            selectedColor: "green",
+            selectedColor: "#00b36b",
           })
         : (markedDay[el.scheduledDate.slice(0, 10)] = {
             selected: true,
@@ -42,7 +42,7 @@ const CalendarComponent = ({ dateList, selectedDate }) => {
         ? (markedDay[dateList.current.scheduledDate.slice(0, 10)] = {
             selected: true,
             marked: true,
-            selectedColor: "green",
+            selectedColor: "#00b36b",
           })
         : dateList.current.scheduledDate //иначе если есть sD то (purple)
         ? (markedDay[dateList.current.scheduledDate.slice(0, 10)] = {
@@ -59,7 +59,7 @@ const CalendarComponent = ({ dateList, selectedDate }) => {
     customStyles: {
       container: {
         borderWidth: 2,
-        borderColor: "orange",
+        borderColor: "blue",
       },
       text: {
         fontSize: 14,

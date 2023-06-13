@@ -60,18 +60,29 @@ const MyWorkoutScreen = ({ navigation }) => {
           />
           <Button
             mode="elevated"
-            style={{ margin: 10 }}
+            textColor="white"
+            style={{
+              marginTop: 20,
+              marginBottom: 20,
+              backgroundColor: "black",
+            }}
             onPress={() => setModalVisible(true)}
             disabled={Object.keys(dateList.workout).length > 0 ? false : true}
           >
             Подтвердить тренировку
           </Button>
         </View>
-        {dateList.comment ? <Text>{dateList.comment}</Text> : <></>}
-        <CurrentWorkout
-          date={dateList.selectedDate.scheduledDate}
-          currentWorkout={dateList.workout}
-        />
+        <View style={{ flex: 1, borderWidth: 1 }}>
+          {dateList.comment ? (
+            <Text style={styles.comment}>{"Comment: " + dateList.comment}</Text>
+          ) : (
+            <></>
+          )}
+          <CurrentWorkout
+            date={dateList.selectedDate.scheduledDate}
+            currentWorkout={dateList.workout}
+          />
+        </View>
         <View>
           <View style={styles.centeredView}>
             <Modal
@@ -96,7 +107,12 @@ const MyWorkoutScreen = ({ navigation }) => {
                   />
                   <Button
                     mode="elevated"
-                    style={{ margin: 10 }}
+                    textColor="white"
+                    style={{
+                      marginTop: 20,
+                      marginBottom: 20,
+                      backgroundColor: "black",
+                    }}
                     onPress={() => submitWorkout()}
                   >
                     Отправить
@@ -114,6 +130,12 @@ const MyWorkoutScreen = ({ navigation }) => {
 export default MyWorkoutScreen;
 
 const styles = StyleSheet.create({
+  comment: {
+    marginVertical: 5,
+    fontWeight: 500,
+    borderTopWidth: 1,
+    paddingRight: 15,
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",

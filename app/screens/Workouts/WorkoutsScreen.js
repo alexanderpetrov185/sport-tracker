@@ -7,8 +7,13 @@ import $api from "../../src/http";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "black",
+    padding: 20,
+    textAlign: "center",
+    borderRadius: 5,
+    marginTop: 20,
+    marginHorizontal: 20,
   },
 });
 
