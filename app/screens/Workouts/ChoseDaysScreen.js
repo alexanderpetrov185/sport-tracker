@@ -62,7 +62,13 @@ const ChoseDaysScreen = ({ route, navigation }) => {
     $api
       .post("/profile/workouts", { workoutPlan, schedule })
       .then((response) => {
-        if (response) navigation.navigate("MyWorkoutScreen");
+        if (response) {
+          navigation.navigate("MyWorkoutScreen");
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "MyWorkoutScreen" }],
+          });
+        }
       })
       .catch((error) => {
         alert(error);

@@ -31,6 +31,17 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
+        <Button
+          mode="elevated"
+          style={{ marginTop: 20, marginBottom: 20, backgroundColor: "black" }}
+          onPress={() =>
+            navigation.navigate("ChoseDaysScreen", {
+              id: id,
+            })
+          }
+        >
+          Выбрать
+        </Button>
         <FlatList
           data={listOfWorkouts}
           renderItem={({ item }) => (
@@ -51,17 +62,6 @@ const ChoseWorkoutsScreen = ({ route, navigation }) => {
             </TouchableOpacity>
           )}
         />
-        <Button
-          mode="elevated"
-          style={{ marginTop: 20, marginBottom: 20, backgroundColor: "black" }}
-          onPress={() =>
-            navigation.navigate("ChoseDaysScreen", {
-              id: id,
-            })
-          }
-        >
-          Выбрать
-        </Button>
       </View>
     </View>
   );
