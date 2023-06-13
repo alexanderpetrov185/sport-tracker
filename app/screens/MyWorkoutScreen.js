@@ -36,7 +36,7 @@ const MyWorkoutScreen = ({ navigation }) => {
     };
   });
 
-  const dataLoading = useSelector((state) => state.loading);
+  const dataLoading = useSelector((state) => state.calendarReducer.loading);
 
   function submitWorkout() {
     setModalVisible(!modalVisible);
@@ -50,65 +50,64 @@ const MyWorkoutScreen = ({ navigation }) => {
       .catch((error) => alert("submitWorkout", error));
   }
 
-  return (
-    <>
-      {!dataLoading ? (
-        <View style={{ flex: 1, padding: 10 }}>
-          <View>
-            <CalendarComponent dateList={dateList.dates} />
-            <Button
-              mode="elevated"
-              style={{ margin: 10 }}
-              onPress={() => setModalVisible(true)}
-            >
-              Подтвердить тренировку
-            </Button>
-          </View>
-          {dateList.comment ? <Text>{dateList.comment}</Text> : <></>}
-          <CurrentWorkout
-            date={dateList.selectedDate.scheduledDate}
-            currentWorkout={dateList.workout}
+  if (!dataLoading) {
+    return (
+      <View style={{ flex: 1, padding: 10 }}>
+        <View>
+          <CalendarComponent
+            dateList={dateList.dates}
+            selectedDate={dateList.selectedDate.scheduledDate}
           />
-          <View>
-            <View style={styles.centeredView}>
-              <Modal
-                animationType="fade"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                  Alert.alert("Modal has been closed.");
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <View style={styles.centeredView}>
-                  <View style={styles.modalView}>
-                    <TextInput
-                      onChangeText={onChangeText}
-                      value={comment}
-                      style={styles.modalText}
-                      multiline={true}
-                      numberOfLines={5}
-                      maxLength={50}
-                      placeholder="Some comment here"
-                    />
-                    <Button
-                      mode="elevated"
-                      style={{ margin: 10 }}
-                      onPress={() => submitWorkout()}
-                    >
-                      Отправить
-                    </Button>
-                  </View>
+          <Button
+            mode="elevated"
+            style={{ margin: 10 }}
+            onPress={() => setModalVisible(true)}
+          >
+            Подтвердить тренировку
+          </Button>
+        </View>
+        {dateList.comment ? <Text>{dateList.comment}</Text> : <></>}
+        <CurrentWorkout
+          date={dateList.selectedDate.scheduledDate}
+          currentWorkout={dateList.workout}
+        />
+        <View>
+          <View style={styles.centeredView}>
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <TextInput
+                    onChangeText={onChangeText}
+                    value={comment}
+                    style={styles.modalText}
+                    multiline={true}
+                    numberOfLines={5}
+                    maxLength={50}
+                    placeholder="Some comment here"
+                  />
+                  <Button
+                    mode="elevated"
+                    style={{ margin: 10 }}
+                    onPress={() => submitWorkout()}
+                  >
+                    Отправить
+                  </Button>
                 </View>
-              </Modal>
-            </View>
+              </View>
+            </Modal>
           </View>
         </View>
-      ) : (
-        <SplashScreen />
-      )}
-    </>
-  );
+      </View>
+    );
+  } else return <SplashScreen />;
 };
 
 export default MyWorkoutScreen;

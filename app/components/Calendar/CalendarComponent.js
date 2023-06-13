@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Calendar } from "react-native-calendars";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { changeCurrentWorkout, emptyDay } from "../../src/actions/calendar";
 
-const CalendarComponent = ({ dateList }) => {
+const CalendarComponent = ({ dateList, selectedDate }) => {
   const dispatch = useDispatch();
   let allMarkedDates = [];
 
-  const [selected, setSelected] = useState();
-  // console.log(selected);
+  const [selected, setSelected] = useState(selectedDate.slice(0, 10));
+
   const markedDay = {};
 
   if (dateList.history.length !== 0) {
