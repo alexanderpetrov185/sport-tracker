@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Calendar } from "react-native-calendars";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeCurrentWorkout, emptyDay } from "../../src/actions/calendar";
 
 const CalendarComponent = ({ dateList }) => {
@@ -8,49 +8,50 @@ const CalendarComponent = ({ dateList }) => {
   let allMarkedDates = [];
 
   const [selected, setSelected] = useState();
+  // console.log(selected);
   const markedDay = {};
 
-  dateList.history.length !== 0
-    ? dateList.history.forEach((el) => {
-        allMarkedDates.push(el);
-        el.workoutDate
-          ? (markedDay[el.scheduledDate.slice(0, 10)] = {
-              selected: true,
-              selectedColor: "green",
-            })
-          : (markedDay[el.scheduledDate.slice(0, 10)] = {
-              selected: true,
-              selectedColor: "red",
-            });
-      })
-    : dateList.history;
+  if (dateList.history.length !== 0) {
+    dateList.history.forEach((el) => {
+      allMarkedDates.push(el);
+      el.workoutDate
+        ? (markedDay[el.scheduledDate.slice(0, 10)] = {
+            selected: true,
+            selectedColor: "green",
+          })
+        : (markedDay[el.scheduledDate.slice(0, 10)] = {
+            selected: true,
+            selectedColor: "red",
+          });
+    });
+  }
 
-  dateList.upcoming.length !== 0
-    ? dateList.upcoming.forEach((el) => {
-        allMarkedDates.push(el);
-        markedDay[el.scheduledDate.slice(0, 10)] = {
-          selected: true,
-          selectedColor: "grey",
-        };
-      })
-    : dateList.upcoming;
+  if (dateList.upcoming.length !== 0) {
+    dateList.upcoming.forEach((el) => {
+      allMarkedDates.push(el);
+      markedDay[el.scheduledDate.slice(0, 10)] = {
+        selected: true,
+        selectedColor: "grey",
+      };
+    });
+  }
 
-  dateList.current
-    ? (allMarkedDates.push(dateList.current),
-      dateList.current.workoutDate
+  if (dateList.current) {
+    allMarkedDates.push(dateList.current),
+      dateList.current.workoutDate //если wD тренировки, тренировка выполнена (green)
         ? (markedDay[dateList.current.scheduledDate.slice(0, 10)] = {
             selected: true,
             marked: true,
             selectedColor: "green",
           })
-        : dateList.current.scheduledDate
+        : dateList.current.scheduledDate //иначе если есть sD то (purple)
         ? (markedDay[dateList.current.scheduledDate.slice(0, 10)] = {
             selected: true,
             marked: true,
             selectedColor: "purple",
           })
-        : dateList.current)
-    : dateList.current;
+        : dateList.current;
+  }
 
   markedDay[selected] = {
     selected: true,
