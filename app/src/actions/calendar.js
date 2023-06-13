@@ -1,5 +1,10 @@
 import $api from "../http";
-import { CHANGE_CALENDAR, INIT_CALENDAR, EMPTYDAY_CALENDAR } from "./types";
+import {
+  CHANGE_CALENDAR,
+  INIT_CALENDAR,
+  EMPTYDAY_CALENDAR,
+  RELOAD_CALENDAR,
+} from "./types";
 
 // Init
 export const initCalendar = () => (dispatch) => {
@@ -8,6 +13,24 @@ export const initCalendar = () => (dispatch) => {
     .then(({ data }) => {
       dispatch({
         type: INIT_CALENDAR,
+        payload: {
+          history: data.history,
+          current: data.current,
+          upcoming: data.upcoming,
+        },
+      });
+    })
+    .catch((error) => {
+      alert(error);
+    });
+};
+
+export const reloadCalendar = () => (dispatch) => {
+  $api
+    .get("/profile/workouts/calendar")
+    .then(({ data }) => {
+      dispatch({
+        type: RELOAD_CALENDAR,
         payload: {
           history: data.history,
           current: data.current,

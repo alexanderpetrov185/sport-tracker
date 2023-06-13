@@ -8,6 +8,7 @@ const CalendarComponent = ({ dateList, selectedDate }) => {
   let allMarkedDates = [];
 
   const [selected, setSelected] = useState(selectedDate.slice(0, 10));
+  // console.log(selected);
 
   const markedDay = {};
 

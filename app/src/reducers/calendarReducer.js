@@ -2,6 +2,7 @@ import {
   INIT_CALENDAR,
   CHANGE_CALENDAR,
   EMPTYDAY_CALENDAR,
+  RELOAD_CALENDAR,
 } from "../actions/types";
 
 const initialState = {
@@ -39,6 +40,15 @@ const calendarReducer = (state = initialState, action) => {
             upcoming: payload.upcoming,
             loading: false,
           };
+    case RELOAD_CALENDAR:
+      return {
+        ...state,
+        history: payload.history,
+        current: payload.current,
+        comment: payload.current.comment,
+        upcoming: payload.upcoming,
+        loading: false,
+      };
     case CHANGE_CALENDAR:
       return {
         ...state,

@@ -5,7 +5,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import CurrentWorkout from "../components/CurrentWorkout/CurrentWorkout";
 import { Button } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { initCalendar } from "../src/actions/calendar";
+import { initCalendar, reloadCalendar } from "../src/actions/calendar";
 import SplashScreen from "./SplashScreen";
 import $api from "../src/http";
 
@@ -36,6 +36,8 @@ const MyWorkoutScreen = ({ navigation }) => {
     };
   });
 
+  // console.log(dateList.selectedDate.scheduledDate);
+
   const dataLoading = useSelector((state) => state.calendarReducer.loading);
 
   function submitWorkout() {
@@ -45,7 +47,7 @@ const MyWorkoutScreen = ({ navigation }) => {
     $api
       .post(`/profile/workouts/calendar/${id}`, { comment, workoutDate })
       .then((response) => {
-        if (response.status === 200) dispatch(initCalendar());
+        if (response.status === 200) dispatch(reloadCalendar());
       })
       .catch((error) => alert("submitWorkout", error));
   }
