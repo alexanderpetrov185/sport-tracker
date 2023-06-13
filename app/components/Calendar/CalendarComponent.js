@@ -54,8 +54,19 @@ const CalendarComponent = ({ dateList, selectedDate }) => {
   }
 
   markedDay[selected] = {
+    ...markedDay[selected],
     selected: true,
-    selectedColor: "blue",
+    customStyles: {
+      container: {
+        borderWidth: 2,
+        borderColor: "orange",
+      },
+      text: {
+        fontSize: 14,
+        fontWeight: "bold",
+        color: "black",
+      },
+    },
   };
 
   function findAndSendId(selectedDay) {
@@ -74,8 +85,8 @@ const CalendarComponent = ({ dateList, selectedDate }) => {
       // Customize the appearance of the calendar
       style={{
         borderWidth: 1,
-        borderColor: "gray",
-        height: 350,
+        borderColor: "black",
+        height: 330,
       }}
       // Callback that gets called when the user selects a day
       onDayPress={(day) => {
@@ -83,6 +94,7 @@ const CalendarComponent = ({ dateList, selectedDate }) => {
         findAndSendId(day.dateString);
       }}
       // Mark specific dates as marked
+      markingType={"custom"}
       markedDates={markedDay}
     />
   );
