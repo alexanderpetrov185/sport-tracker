@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 5,
     fontWeight: "bold",
-    textShadowColor: "black",
+    textShadowColor: "purple",
     textShadowOffset: { width: 1, height: 1 },
   },
 });
