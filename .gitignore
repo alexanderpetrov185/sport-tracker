@@ -10,6 +10,8 @@ npm-debug.*
 *.orig.*
 web-build/
 dump_date.sql
+eas.json
+docker-compose pasha.yml
 
 # macOS
 .DS_Store
