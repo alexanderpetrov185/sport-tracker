@@ -1,4 +1,4 @@
-name: sport-tracker-web
+name: Publish Docker image
 
 on:
   push:
